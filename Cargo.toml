@@ -7,3 +7,4 @@ authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 iron = "*"
 staticfile = "*"
 mount = "*"
+spongedown = "0.1.1"
