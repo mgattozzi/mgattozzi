@@ -22,7 +22,7 @@ use mount::Mount;
 
 // Standard Library Imports
 use std::path::{Path, PathBuf};
-use std::fs::{metadata, read_dir, File, create_dir};
+use std::fs::{read_dir, File};
 use std::io::{Read, Write};
 use std::process::Command;
 use std::thread::{spawn,sleep};
