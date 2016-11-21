@@ -1,0 +1,9 @@
+[package]
+name = "mgattozzi"
+version = "0.1.0"
+authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
+
+[dependencies]
+iron = "*"
+staticfile = "*"
+mount = "*"
