@@ -34,7 +34,7 @@ fn main() {
     let args = App::new("mgattozzi")
         .version("0.1.0")
         .author("Michael Gattozzi <mgattozzi@gmail.com>")
-        .about("Unix Platform Agnostic Installer")
+        .about("Personal website")
         .arg(Arg::with_name("hotload")
             .short("h")
             .takes_value(true)
