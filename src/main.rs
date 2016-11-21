@@ -2,6 +2,15 @@ extern crate iron;
 extern crate staticfile;
 extern crate mount;
 extern crate spongedown;
+extern crate clap;
+extern crate crypto;
+
+// Command Argument Imports
+use clap::{App, Arg};
+
+// Hashing Imports
+use crypto::md5::Md5;
+use crypto::digest::Digest;
 
 // Markdown Imports
 use spongedown::parse;
@@ -13,18 +22,46 @@ use mount::Mount;
 
 // Standard Library Imports
 use std::path::{Path, PathBuf};
-use std::fs::{read_dir, File};
+use std::fs::{metadata, read_dir, File, create_dir};
 use std::io::{Read, Write};
 use std::process::Command;
+use std::thread::{spawn,sleep};
+use std::time;
 
 /// Setup webserver then launch it
 fn main() {
+
+    let args = App::new("mgattozzi")
+        .version("0.1.0")
+        .author("Michael Gattozzi <mgattozzi@gmail.com>")
+        .about("Unix Platform Agnostic Installer")
+        .arg(Arg::with_name("hotload")
+            .short("h")
+            .takes_value(true)
+            .help("Hot reload files"))
+        .get_matches();
+
     println!("Setting up server");
 
     let mut mount = Mount::new();
     compile_sass();
     render_posts();
     mount_dirs(&mut mount);
+
+    // We'll hotload after just to make sure everything is processed once
+    if let Some(hot) = args.value_of("hotload") {
+        let sleep_int = hot.parse::<u64>().expect("Use a number for input");
+
+        let _ = spawn(move || {
+            let dir = Path::new("_sass");
+            watch_dir(sleep_int, dir, compile_sass);
+        });
+
+        let _ = spawn(move || {
+            let dir = Path::new("_posts");
+            watch_dir(sleep_int, dir, render_posts);
+        });
+    }
 
     println!("Server now running");
     Iron::new(mount).http("127.0.0.1:3000").unwrap();
@@ -133,8 +170,65 @@ fn compile_sass() {
                         .stdout;
     let sass = String::from_utf8_lossy(&output);
 
-    let mut css = File::create(Path::new("assets/css/main.css")).expect("Unable to create css file");
+    let mut css = File::create(Path::new("assets/css/main.css"))
+        .expect("Unable to create css file");
     let _ = css.write_all(sass.as_bytes());
 
     println!("Compiling sass completed");
+}
+
+fn watch_dir<F: Fn()>(interval: u64, dir: &Path, func: F){
+    // Create our duration object so the thread knows how long
+    // to sleep
+    let duration = time::Duration::new(interval, 0);
+
+    let mut md5_buf = String::new();
+    let mut md5_comp = String::new();
+
+    // Get the hash of all files as is
+    md5sum(&mut md5_comp, &dir);
+
+
+    loop {
+        // Sum our directory then compare replace the current comparison
+        // if it's different run the function passed in to be run on difference
+        md5sum(&mut md5_buf, &dir);
+        if md5_buf != md5_comp {
+            md5_comp = md5_buf.clone();
+            func();
+            println!("Passed here");
+        }
+        sleep(duration);
+        // Clear our buffer for another pass
+        md5_buf.clear();
+    }
+}
+
+fn md5sum(buffer: &mut String, path: &Path) {
+    // Get a file's contents, md5 it then push into buffer
+    // Do so for all files in the directory recursively
+    match read_dir(path) {
+        Ok(iter) => {
+            for entry in iter {
+                match entry {
+                    Ok(dir) => {
+                        let name = dir.path();
+                        if name.is_dir() {
+                            md5sum(buffer, &name);
+                        } else {
+                            let mut md5 = Md5::new();
+                            let mut f = File::open(name)
+                                .expect("Unable to open file for md5sum");
+                            let mut buff = String::new();
+                            let _ = f.read_to_string(&mut buff);
+                            md5.input_str(&buff);
+                            buffer.push_str(&md5.result_str());
+                        }
+                    },
+                    Err(_) => panic!("Unable to sum files for site"),
+                }
+            }
+        },
+        Err(_) => panic!("Code not run from project root"),
+    }
 }
