@@ -1,0 +1,6 @@
+[submodule "highlight.js"]
+	path = highlight.js
+	url = git@github.com:mgattozzi/highlight.js.git
+[submodule "async-await"]
+	path = async-await
+	url = http://github.com/mgattozzi/async-await
