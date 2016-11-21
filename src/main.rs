@@ -15,10 +15,14 @@ use mount::Mount;
 use std::path::{Path, PathBuf};
 use std::fs::{read_dir, File};
 use std::io::{Read, Write};
+use std::process::Command;
 
 /// Setup webserver then launch it
 fn main() {
+    println!("Setting up server");
+
     let mut mount = Mount::new();
+    compile_sass();
     render_posts();
     mount_dirs(&mut mount);
 
@@ -28,10 +32,12 @@ fn main() {
 
 /// Mount directories prior to launch
 fn mount_dirs(mount: &mut Mount) {
+    println!("Mounting files");
 
     // Mount all of the assets
-    mount.mount("/", Static::new(Path::new("assets/css/")));
-    mount.mount("/", Static::new(Path::new("assets/js/")));
+    mount.mount("/css", Static::new(Path::new("assets/css/")));
+    mount.mount("/js", Static::new(Path::new("assets/js/")));
+    mount.mount("/images", Static::new(Path::new("assets/images/")));
 
     // Hardcode the starting page to the root
     mount.mount("/", Static::new(Path::new("site/index.html")));
@@ -60,11 +66,13 @@ fn mount_dirs(mount: &mut Mount) {
         Err(_) => panic!("Code not run from project root"),
     }
 
+    println!("Mounting files completed");
 }
 
 /// Takes all posts under _posts and renders them into html and places them
 /// under site/posts to be served from
 fn render_posts() {
+    println!("Rendering Markdown");
     match read_dir("_posts") {
         Ok(iter) => {
             let mut posts = PathBuf::from("site/posts");
@@ -84,7 +92,11 @@ fn render_posts() {
                             md.read_to_string(&mut buf).expect("Couldn't read md file");
 
                             // Parse string then write it to the html file
-                            let marked = parse(&buf);
+                            let mut marked = parse(&buf);
+
+                            // Get the main style sheet automatically as part of the file
+                            marked.push_str("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">");
+
                             let mut html = File::create(&posts).expect("Unable to create html file");
                             let _ = html.write_all(marked.as_bytes());
 
@@ -98,6 +110,7 @@ fn render_posts() {
         },
         Err(_) => panic!("Code not run from project root"),
     }
+    println!("Rendering Markdown completed");
 }
 
 fn is_md_file(path: &Path) -> bool {
@@ -105,4 +118,20 @@ fn is_md_file(path: &Path) -> bool {
         Some(ext) => ext == "md",
         None => false,
     }
+}
+
+fn compile_sass() {
+    println!("Compiling sass");
+
+    let output = Command::new("sass")
+                        .arg("_sass/styles.scss")
+                        .output()
+                        .expect("sass compilation failed")
+                        .stdout;
+    let sass = String::from_utf8_lossy(&output);
+
+    let mut css = File::create(Path::new("assets/css/main.css")).expect("Unable to create css file");
+    let _ = css.write_all(sass.as_bytes());
+
+    println!("Compiling sass completed");
 }
