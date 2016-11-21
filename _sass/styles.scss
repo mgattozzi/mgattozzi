@@ -1,5 +1,5 @@
 @import 'bourbon/bourbon';
-@import 'syntax';
+//@import 'syntax';
 
 $grey-color:       #828282;
 
@@ -483,28 +483,5 @@ body {
     &:hover {
       color: #333333;
     }
-  }
-}
-
-
-pre,
-code {
-  font-size: 15px;
-  border: 1px solid #e8e8e8;
-  border-radius: 3px;
-  background-color: #eeeeff;
-}
-
-code {
-  padding: 1px 5px;
-}
-
-pre {
-  padding: 8px 12px;
-  overflow-x: scroll;
-  > code {
-    border: 0;
-    padding-right: 0;
-    padding-left: 0;
   }
 }

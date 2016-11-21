@@ -96,6 +96,9 @@ fn render_posts() {
 
                             // Get the main style sheet automatically as part of the file
                             marked.push_str("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">");
+                            marked.push_str("<link rel=\"stylesheet\" href=\"/css/highlight/zenburn.css\">");
+                            marked.push_str("<script src=\"/js/highlight/highlight.pack.js\"></script>");
+                            marked.push_str("<script>hljs.initHighlightingOnLoad();</script>");
 
                             let mut html = File::create(&posts).expect("Unable to create html file");
                             let _ = html.write_all(marked.as_bytes());
