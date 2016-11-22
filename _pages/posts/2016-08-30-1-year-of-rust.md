@@ -1,4 +1,7 @@
-# One Year of Rust
+---
+layout: post
+title: One Year of Rust
+---
 
 I've been using Rust since 1.0 launched. I had heard of it before 1.0
 but didn't pay much attention to it and spent some time flirting with

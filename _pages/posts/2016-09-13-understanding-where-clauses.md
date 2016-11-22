@@ -1,4 +1,7 @@
-# Understanding where clauses and trait constraints
+---
+layout: post
+title: Understanding where clauses and trait constraints
+---
 
 Lately I've been working on a crate [functils](https://github.com/mgattozzi/functils) to make Rust a little more
 functional and it's based off Stephen Diehl's

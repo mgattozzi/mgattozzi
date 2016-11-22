@@ -22,7 +22,7 @@ use mount::Mount;
 
 // Standard Library Imports
 use std::path::{Path, PathBuf};
-use std::fs::{read_dir, File};
+use std::fs::{create_dir,read_dir, metadata, File};
 use std::io::{Read, Write};
 use std::process::Command;
 use std::thread::{spawn,sleep};
@@ -43,9 +43,14 @@ fn main() {
 
     println!("Setting up server");
 
+    if metadata("site").is_err() {
+        // site doesn't exist yet so create it
+        let _ = create_dir("site");
+    }
+
     let mut mount = Mount::new();
     compile_sass();
-    render_posts();
+    render_pages();
     mount_dirs(&mut mount);
 
     // We'll hotload after just to make sure everything is processed once
@@ -58,8 +63,8 @@ fn main() {
         });
 
         let _ = spawn(move || {
-            let dir = Path::new("_posts");
-            watch_dir(sleep_int, dir, render_posts);
+            let dir = Path::new("_pages");
+            watch_dir(sleep_int, dir, render_pages);
         });
     }
 
@@ -77,7 +82,7 @@ fn mount_dirs(mount: &mut Mount) {
     mount.mount("/images", Static::new(Path::new("assets/images/")));
 
     // Hardcode the starting page to the root
-    mount.mount("/", Static::new(Path::new("site/index.html")));
+    mount.mount("/", Static::new(Path::new("site/")));
 
     // Mount each directory to the site
     match read_dir("site") {
@@ -106,13 +111,41 @@ fn mount_dirs(mount: &mut Mount) {
     println!("Mounting files completed");
 }
 
-/// Takes all posts under _posts and renders them into html and places them
-/// under site/posts to be served from
-fn render_posts() {
-    println!("Rendering Markdown");
-    match read_dir("_posts") {
+fn render_pages() {
+    match read_dir("_pages") {
         Ok(iter) => {
-            let mut posts = PathBuf::from("site/posts");
+            for entry in iter {
+                match entry {
+                    Ok(dir) => {
+                        let mut to = PathBuf::from("site");
+                        if dir.path().is_dir() {
+                            to.push(dir.file_name()
+                                    .to_str()
+                                    .expect("Failure to get directory filename"));
+                            render_md(&dir.path(), to);
+                        }
+                    },
+                    Err(_) => panic!("Unable to read from directories for site"),
+                }
+            }
+        },
+        Err(_) => panic!("Code not run from project root"),
+    }
+
+    // Render the top level
+    render_md(Path::new("_pages"), PathBuf::from("site"));
+}
+
+fn render_md(from: &Path, mut to: PathBuf) {
+    println!("Rendering Markdown for {}", from.to_str().unwrap());
+    match read_dir(from) {
+        Ok(iter) => {
+
+            if from != Path::new("_pages") && metadata(&to).is_err() {
+                // Folder doesn't exist yet so create it
+                let _ = create_dir(&to);
+            }
+
             for entry in iter {
                 match entry {
                     Ok(dir) => {
@@ -120,8 +153,8 @@ fn render_posts() {
                         if path.is_file() && is_md_file(&path) {
 
                             // Setup path for output
-                            posts.push(path.file_name().expect("Couldn't change filename for posts"));
-                            posts.set_extension("html");
+                            to.push(path.file_name().expect("Couldn't change filename for folder"));
+                            to.set_extension("html");
 
                             // Read in file to a string
                             let mut md = File::open(path).expect("Couldn't open md to render");
@@ -137,11 +170,11 @@ fn render_posts() {
                             marked.push_str("<script src=\"/js/highlight/highlight.pack.js\"></script>");
                             marked.push_str("<script>hljs.initHighlightingOnLoad();</script>");
 
-                            let mut html = File::create(&posts).expect("Unable to create html file");
+                            let mut html = File::create(&to).expect("Unable to create html file");
                             let _ = html.write_all(marked.as_bytes());
 
                             // Get it ready for next one
-                            posts.pop();
+                            to.pop();
                         }
                     },
                     Err(_) => panic!("Unable to mount directories for site"),
@@ -150,7 +183,7 @@ fn render_posts() {
         },
         Err(_) => panic!("Code not run from project root"),
     }
-    println!("Rendering Markdown completed");
+    println!("Rendering Markdown for {} completed", from.to_str().unwrap());
 }
 
 fn is_md_file(path: &Path) -> bool {
@@ -196,7 +229,6 @@ fn watch_dir<F: Fn()>(interval: u64, dir: &Path, func: F){
         if md5_buf != md5_comp {
             md5_comp = md5_buf.clone();
             func();
-            println!("Passed here");
         }
         sleep(duration);
         // Clear our buffer for another pass

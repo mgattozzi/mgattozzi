@@ -1,4 +1,7 @@
-# How do I convert a &str to a String in Rust?
+---
+layout: post
+title: How do I convert a &str to a String in Rust?
+---
 
 This is the first in a whole series of blog posts to answer the simple
 question "How do I X in Rust?" Many times as a user coming into the

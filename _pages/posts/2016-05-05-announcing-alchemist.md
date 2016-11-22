@@ -1,4 +1,7 @@
-# Announcing Alchemist
+---
+layout: post
+title: Announcing Alchemist
+---
 
 I've been working on a small project for a while now and it's with great
 pleasure that I get to announce it now that I have a proof of concept.

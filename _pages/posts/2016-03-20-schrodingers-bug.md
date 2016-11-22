@@ -1,4 +1,7 @@
-# Schrodinger's Bug Adventures in Asynchronous Debugging
+---
+layout: post
+title: Schrodinger's Bug Adventures in Asynchronous Debugging
+---
 
 Lately I've been writing integration tests for [Elsen](https://elsen.co)
 using node.js to verify our Haskell backend is indeed returning to us

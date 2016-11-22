@@ -1,4 +1,7 @@
-# Schemers - Input
+---
+layout: post
+title: Schemers - Input
+---
 
 In my CS undergrad right now I've been taking an interesting course on the
 *Structure of Higher Level Languages*. It's quite the eye opening class

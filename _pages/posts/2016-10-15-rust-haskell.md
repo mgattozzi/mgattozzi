@@ -1,4 +1,7 @@
-# Using Haskell in Rust
+---
+layout: post
+title: Using Haskell in Rust
+---
 
 After my article on putting [Rust in Haskell](http://mgattozzi.github.io/2016/10/01/haskell-rust.html) I
 set out on getting Haskell into Rust as part of my test suite for

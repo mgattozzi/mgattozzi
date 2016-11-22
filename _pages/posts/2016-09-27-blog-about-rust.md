@@ -1,4 +1,7 @@
-# Why you should be blogging about Rust
+---
+layout: post
+title: Why you should be blogging about Rust
+---
 
 Let's jump right into it, I'm here to convince you to start blogging
 about Rust if you haven't and if you have to continue to do so, and
