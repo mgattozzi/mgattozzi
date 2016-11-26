@@ -60,7 +60,7 @@ If you've done generics with slices before or with slices with non
 deterministic sizes you know what's going to happen. If you don't here's
 the error message:
 
-```
+```bash
 error: aborting due to 2 previous errors
 error: the trait bound `[A]: std::marker::Sized` is not satisfied [--explain E0277]
  --> example.rs:5:1
@@ -105,7 +105,7 @@ pub fn uncons<A: IntoIterator + FromIterator<A>, B>(x: A) -> Option<(B,A)> {
 This should work. This is perfect code. Nothing should go wrong. Oh boy
 did it go wrong.
 
-```
+```bash
 error: aborting due to previous error
 error: mismatched types [--explain E0308]
   --> example.rs:16:15
@@ -143,7 +143,7 @@ pub fn uncons<A: IntoIterator + FromIterator<A>, B>(x: A) -> Option<(B,A)>
 
 Okay so this didn't solve our problem. We get this error again instead:
 
-```
+```bash
 error: mismatched types [--explain E0308]
   --> example.rs:11:15
    |>

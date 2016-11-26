@@ -48,6 +48,12 @@ body {
     transform: translate(-50%, -50%)
 }
 
+code {
+    max-width: 100%;
+    min-width: 200px;
+    max-width: 768px;
+}
+
 a {
   color: black;
 }
@@ -165,14 +171,22 @@ div.post-footer {
 
 // About Page
 .about-img {
-    width: 320px;
-    height: 320px;
+    max-width: 100%;
+    max-width: 320px;
+    height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 .macro {
-    width: 768px;
-    height: 576px;
+    max-width: 100%;
+    min-width: 200px;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+    min-width: 200px;
+    height: auto;
 }

@@ -45,7 +45,7 @@ cargo new haskellrs
 
 This well setup a folder haskellrs that's laid out like this:
 
-```
+```bash
 .
 ├── Cargo.toml
 └── src

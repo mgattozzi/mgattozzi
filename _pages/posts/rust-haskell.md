@@ -90,7 +90,7 @@ up `hs2rs.cabal`
 
 It will look something like this:
 
-```cabal
+```bash
 name:                hs2rs
 version:             0.1.0.0
 synopsis:            Initial project template from stack
@@ -121,7 +121,7 @@ We're going to add some options, import some dependencies, and make sure
 our c wrapper code is included. Your cabal file will look something like
 this when you modify it:
 
-```cabal
+```bash
 name:                hs2rs
 version:             0.1.0.0
 synopsis:            Use Haskell in Rust!
@@ -289,7 +289,7 @@ What about tests? If you try to run the code without having compiled
 anything else the whole thing fails. Let's set up a quick easy Makefile
 to avoid this problem:
 
-```make
+```bash
 build: hs cargo
 
 hs:

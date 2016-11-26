@@ -125,7 +125,7 @@ of functions you can write and publish that others can use. We'll be
 using one of these libraries in our own project! That's later though.
 Let's take a look inside our project directory. It'll look like this:
 
-```
+```bash
 .
 ├── Cargo.toml
 ├── .gitignore
@@ -212,7 +212,7 @@ code.
 
 Except, it's going to fail. Let's take a look at the error message:
 
-```
+```bash
 error[E0384]: re-assignment of immutable variable `done`
  --> src/main.rs:4:9
   |
@@ -493,7 +493,7 @@ what happens. After a lot of output you should see `>> ` pop up on your
 screen! Type in some things and press enter and watch it get put on to
 your screen!
 
-```
+```bash
 >> hello
 hello
 >> goodbye
@@ -503,7 +503,7 @@ goodbye
 Let's see if we can get it to print out our error message. Hit Ctrl-c
 then Ctrl-d. You should see the following outputs:
 
-```
+```bash
 >>
 Couldn't readline. Error was: Interrupted
 >>
@@ -512,7 +512,7 @@ Couldn't readline. Error was: EOF
 
 Now type in (exit) your program should close out!
 
-```
+```bash
 >> (exit)
 michael@kotetsujo ~/Code/schemers (git)-[master] %
 ```
