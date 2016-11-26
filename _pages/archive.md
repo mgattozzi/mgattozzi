@@ -1,3 +1,5 @@
+<div class="archive">
+
 # Archive
 
 You'll find collections of articles I've written here that can be
@@ -44,3 +46,5 @@ normally associated with learning the language.
 ## JS
 - [Schrodinger's Bug: Adventures in Asynchronous
   Debugging](/posts/schrodingers-bug.html)
+
+</div>
