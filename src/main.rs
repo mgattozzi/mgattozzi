@@ -50,7 +50,6 @@ fn main() {
 
     let mut mount = Mount::new();
     compile_sass();
-    render_pages();
     mount_dirs(&mut mount);
 
     // We'll hotload after just to make sure everything is processed once
@@ -210,6 +209,8 @@ fn render_md(from: &Path, mut to: PathBuf) {
 fn read_in_includes(mut h_buf: &mut String, mut b_buf: &mut String, mut f_buf: &mut String, mut p_buf: &mut Option<String>) {
     let h = mkpath("includes/header.html");
     let b = mkpath("includes/body.html");
+    let c = mkpath("assets/css/main.css");
+    let z = mkpath("assets/css/highlight/zenburn.css");
     let f = mkpath("includes/footer.html");
 
     let mut file_handle = File::open(h).expect("Couldn't open includes for site");
@@ -217,6 +218,14 @@ fn read_in_includes(mut h_buf: &mut String, mut b_buf: &mut String, mut f_buf: &
 
     file_handle = File::open(b).expect("Couldn't open includes for site");
     file_handle.read_to_string(&mut b_buf).expect("Couldn't read include file");
+
+    // Push the css inline
+    file_handle = File::open(c).expect("Couldn't open includes for site");
+    b_buf.push_str("<style>");
+    file_handle.read_to_string(&mut b_buf).expect("Couldn't read include file");
+    file_handle = File::open(z).expect("Couldn't open includes for site");
+    file_handle.read_to_string(&mut b_buf).expect("Couldn't read include file");
+    b_buf.push_str("</style>");
 
     file_handle = File::open(f).expect("couldn't open includes for site");
     file_handle.read_to_string(&mut f_buf).expect("couldn't read include file");
@@ -250,6 +259,7 @@ fn compile_sass() {
     let _ = css.write_all(sass.as_bytes());
 
     println!("Compiling sass completed");
+    render_pages();
 }
 
 fn watch_dir<F: Fn()>(interval: u64, dir: &Path, func: F){
