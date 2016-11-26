@@ -181,6 +181,7 @@ fn render_md(from: &Path, mut to: PathBuf) {
 
                             // Parse string then write it to the html file
                             let mut marked = String::new();
+                            marked.push_str("<meta name=viewport content=\"width=device-width, initial-scale=1\">");
                             marked.push_str(&header);
                             marked.push_str(&parse(&buf));
                             marked.push_str(&body);

@@ -2,3 +2,4 @@ target
 .sass-cache
 .hotload
 site
+assets/css/main.css
