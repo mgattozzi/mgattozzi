@@ -143,7 +143,7 @@ fn render_pages() {
 fn render_md(from: &Path, mut to: PathBuf) {
     println!("Rendering Markdown for {}", from.to_str().unwrap());
     let mut header = String::new();
-    let mut body   = String::new();
+    let mut head   = String::new();
     let mut footer = String::new();
     let mut post_foot: Option<String>;
     if !from.starts_with("_pages/posts") {
@@ -152,7 +152,7 @@ fn render_md(from: &Path, mut to: PathBuf) {
         post_foot = Some(String::new());
     }
 
-    read_in_includes(&mut header, &mut body, &mut footer, &mut post_foot);
+    read_in_includes(&mut header, &mut head, &mut footer, &mut post_foot);
 
 
     match read_dir(from) {
@@ -180,10 +180,10 @@ fn render_md(from: &Path, mut to: PathBuf) {
 
                             // Parse string then write it to the html file
                             let mut marked = String::new();
-                            marked.push_str("<meta name=viewport content=\"width=device-width, initial-scale=1\">");
+                            // This makes the page scale for mobile
+                            marked.push_str(&head);
                             marked.push_str(&header);
                             marked.push_str(&parse(&buf));
-                            marked.push_str(&body);
                             if let Some(ref post) = post_foot {
                                 marked.push_str(&post);
                             }
@@ -208,7 +208,7 @@ fn render_md(from: &Path, mut to: PathBuf) {
 
 fn read_in_includes(mut h_buf: &mut String, mut b_buf: &mut String, mut f_buf: &mut String, mut p_buf: &mut Option<String>) {
     let h = mkpath("includes/header.html");
-    let b = mkpath("includes/body.html");
+    let b = mkpath("includes/head.html");
     let c = mkpath("assets/css/main.css");
     let z = mkpath("assets/css/highlight/zenburn.css");
     let f = mkpath("includes/footer.html");
