@@ -33,5 +33,20 @@ fn compile_sass() {
 }
 
 fn compile_less() {
-    println!("No Less Support Yet");
+    println!("Compiling less");
+
+    let output = Command::new("lessc")
+                        .arg("less/main.less")
+                        .output()
+                        .expect("less compilation failed")
+                        .stdout;
+
+    let less = String::from_utf8_lossy(&output);
+
+    let mut css = File::create(mkpath("assets/css/main.css"))
+        .expect("Unable to create css file");
+    let _ = css.write_all(less.as_bytes());
+
+    println!("Compiling less completed");
+    render_pages();
 }
