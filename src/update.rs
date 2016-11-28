@@ -15,6 +15,7 @@ use css::compile_css;
 
 pub fn file_updater(conf: &Config) {
     let duration = update_duration(conf);
+
     if let Some(c) = css(conf) {
         let _ = spawn(move || {
             let dir = mkpath("sass");
