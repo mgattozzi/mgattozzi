@@ -14,49 +14,32 @@ pub fn parse_config() -> Option<Config> {
     Parser::new(&buff).parse()
 }
 
+// Note that these lookups aren't using lookup because the functions for the
+// library were not implemented with & versions.
+
 pub fn css(conf: &Config) -> Option<PreProc> {
-    match conf.get("css") {
-        Some(&Value::Table(ref tab))=> {
-            match tab.get("pre_processor") {
-                Some(&Value::Boolean(pp)) => {
-                    if pp {
-                        match tab.get("css_processor") {
-                            Some(&Value::String(ref css_proc)) => {
-                                if css_proc == "sass" {
-                                    Some(PreProc::Sass)
-                                } else if css_proc == "less" {
-                                    Some(PreProc::Less)
-                                } else {
-                                    None
-                                }
-                            },
-                            _ => None,
-                        }
-                    } else {
-                        None
-                    }
-                },
-                _ => None,
-            }
-        },
-        _ => None,
-    }
+    conf.get("css")
+        .and_then(Value::as_table)
+        .and_then(|x| x.get("css_processor"))
+        .and_then(Value::as_str)
+        .and_then(|css_proc|
+            if css_proc == "sass" {
+                Some(PreProc::Sass)
+            } else if css_proc == "less" {
+                Some(PreProc::Less)
+            } else {
+                None
+            })
 }
 
 pub fn update_duration(conf: &Config) -> u64 {
     let sleep_default = 5;
 
-    match conf.get("site"){
-        Some(&Value::Table(ref tab)) => {
-            match tab.get("sleep_update") {
-                Some(&Value::Integer(val)) => {
-                    val as u64
-                },
-                _ => sleep_default,
-            }
-        },
-        _ => sleep_default,
-    }
+    conf.get("site")
+        .and_then(Value::as_table)
+        .and_then(|x| x.get("sleep_update"))
+        .and_then(Value::as_integer)
+        .unwrap_or(sleep_default) as u64
 }
 
 #[derive(PartialEq, Eq)]
