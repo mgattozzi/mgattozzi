@@ -1,3 +1,9 @@
+[site]
+# What port do you want the site to run on?
+port = 3000
+# How long between each check to see if files changed?
+sleep_update = 5
+
 [css]
 # If set to false css_preprocessor will be ignored
 pre_processor = true

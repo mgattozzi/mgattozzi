@@ -48,6 +48,22 @@ pub fn css(conf: &Config) -> Option<PreProc> {
     }
 }
 
+pub fn update_duration(conf: &Config) -> u64 {
+    let sleep_default = 5;
+
+    match conf.get("site"){
+        Some(&Value::Table(ref tab)) => {
+            match tab.get("sleep_update") {
+                Some(&Value::Integer(val)) => {
+                    val as u64
+                },
+                _ => sleep_default,
+            }
+        },
+        _ => sleep_default,
+    }
+}
+
 #[derive(PartialEq, Eq)]
 pub enum PreProc {
     Less,

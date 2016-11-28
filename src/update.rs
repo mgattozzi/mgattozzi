@@ -8,34 +8,35 @@ use std::io::Read;
 use std::time::Duration;
 use std::thread::{spawn, sleep};
 
-use config::{css, Config, PreProc};
+use config::{css, update_duration, Config, PreProc};
 use util::mkpath;
 use md::render_pages;
 use css::compile_css;
 
 pub fn file_updater(conf: &Config) {
+    let duration = update_duration(conf);
     if let Some(c) = css(conf) {
         let _ = spawn(move || {
             let dir = mkpath("sass");
-            watch_css(dir, &c);
+            watch_css(duration, dir, &c);
         });
     }
 
     let _ = spawn(move || {
         let dir = mkpath("pages");
-        watch_pages(dir);
+        watch_pages(duration, dir);
     });
 
     let _ = spawn(move || {
         let dir = mkpath("includes");
-        watch_pages(dir);
+        watch_pages(duration, dir);
     });
 }
 
-fn watch_pages(dir: &Path){
+fn watch_pages(dur: u64, dir: &Path){
     // Create our duration object so the thread knows how long
     // to sleep
-    let duration = Duration::new(5, 0);
+    let duration = Duration::new(dur, 0);
 
     let mut md5_buf = String::new();
     let mut md5_comp = String::new();
@@ -59,10 +60,10 @@ fn watch_pages(dir: &Path){
 }
 
 // TODO: Find a way to dedupe this code somehow
-fn watch_css(dir: &Path, pre: &PreProc){
+fn watch_css(dur: u64, dir: &Path, pre: &PreProc){
     // Create our duration object so the thread knows how long
     // to sleep
-    let duration = Duration::new(5, 0);
+    let duration = Duration::new(dur, 0);
 
     let mut md5_buf = String::new();
     let mut md5_comp = String::new();
