@@ -8,7 +8,7 @@ extern crate toml;
 
 mod md;
 mod util;
-mod sass;
+mod css;
 mod update;
 mod mount_site;
 mod config;
@@ -25,10 +25,10 @@ use std::fs::create_dir;
 
 // Binary Function Imports
 use util::{mkpath,exists};
-use sass::compile_sass;
+use css::compile_css;
 use update::file_updater;
 use mount_site::mount_dirs;
-use config::{parse_config, Config};
+use config::{parse_config, css, Config};
 
 /// Setup webserver then launch it
 fn main() {
@@ -59,7 +59,11 @@ fn setup(conf: Config) -> Mount {
     }
 
     let mut mount = Mount::new();
-    compile_sass();
+
+    if let Some(c) = css(&conf) {
+        compile_css(&c);
+    }
+
     mount_dirs(&mut mount);
 
     file_updater(&conf);

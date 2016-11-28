@@ -8,30 +8,31 @@ use std::io::Read;
 use std::time::Duration;
 use std::thread::{spawn, sleep};
 
-use config::Config;
+use config::{css, Config, PreProc};
 use util::mkpath;
 use md::render_pages;
-use sass::compile_sass;
+use css::compile_css;
 
 pub fn file_updater(conf: &Config) {
-    // We'll hotload after just to make sure everything is processed once
-    let _ = spawn(move || {
-        let dir = mkpath("sass");
-        watch_dir(dir, compile_sass);
-    });
+    if let Some(c) = css(conf) {
+        let _ = spawn(move || {
+            let dir = mkpath("sass");
+            watch_css(dir, &c);
+        });
+    }
 
     let _ = spawn(move || {
         let dir = mkpath("pages");
-        watch_dir(dir, render_pages);
+        watch_pages(dir);
     });
 
     let _ = spawn(move || {
         let dir = mkpath("includes");
-        watch_dir(dir, render_pages);
+        watch_pages(dir);
     });
 }
 
-fn watch_dir<F: Fn()>(dir: &Path, func: F){
+fn watch_pages(dir: &Path){
     // Create our duration object so the thread knows how long
     // to sleep
     let duration = Duration::new(5, 0);
@@ -49,7 +50,34 @@ fn watch_dir<F: Fn()>(dir: &Path, func: F){
         md5sum(&mut md5_buf, &dir);
         if md5_buf != md5_comp {
             md5_comp = md5_buf.clone();
-            func();
+            render_pages();
+        }
+        sleep(duration);
+        // Clear our buffer for another pass
+        md5_buf.clear();
+    }
+}
+
+// TODO: Find a way to dedupe this code somehow
+fn watch_css(dir: &Path, pre: &PreProc){
+    // Create our duration object so the thread knows how long
+    // to sleep
+    let duration = Duration::new(5, 0);
+
+    let mut md5_buf = String::new();
+    let mut md5_comp = String::new();
+
+    // Get the hash of all files as is
+    md5sum(&mut md5_comp, &dir);
+
+
+    loop {
+        // Sum our directory then compare replace the current comparison
+        // if it's different run the function passed in to be run on difference
+        md5sum(&mut md5_buf, &dir);
+        if md5_buf != md5_comp {
+            md5_comp = md5_buf.clone();
+            compile_css(&pre);
         }
         sleep(duration);
         // Clear our buffer for another pass

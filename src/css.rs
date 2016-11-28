@@ -3,12 +3,21 @@ use std::io::Write;
 use std::fs::File;
 use util::mkpath;
 use md::render_pages;
+use config::PreProc;
+use config::PreProc::{Sass,Less};
 
-pub fn compile_sass() {
+pub fn compile_css(proccesor: &PreProc) {
+    match proccesor {
+        &Sass => compile_sass(),
+        &Less => compile_less(),
+    }
+}
+
+fn compile_sass() {
     println!("Compiling sass");
 
     let output = Command::new("sass")
-                        .arg("sass/styles.scss")
+                        .arg("sass/main.scss")
                         .output()
                         .expect("sass compilation failed")
                         .stdout;
@@ -21,4 +30,8 @@ pub fn compile_sass() {
 
     println!("Compiling sass completed");
     render_pages();
+}
+
+fn compile_less() {
+    println!("No Less Support Yet");
 }
