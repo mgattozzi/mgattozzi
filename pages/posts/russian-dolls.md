@@ -18,7 +18,7 @@ Since everything was using `Option` I had a lot of matching and
 unwrapping of values going on. My code was slowly devolving into
 this:
 
-<img src="/images/russian_dolls.jpg" alt="Russian Dolls">
+<img class="post" src="/images/russian_dolls.jpg" alt="Russian Dolls">
 
 Here's what it looked like before in fact. Not one of my prouder coding
 moments:
