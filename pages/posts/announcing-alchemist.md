@@ -30,7 +30,9 @@ Of course I can't just claim all of this and not give a demonstration.
 Here's a video of me installing some packages for Ubuntu and getting
 the Arch Linux equivalent:
 
-<iframe src="https://player.vimeo.com/video/165509394" width="640" height="357" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div class="video-container">
+  <iframe src="https://player.vimeo.com/video/165509394" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
 
 In order to build it you'll need the binary and library packages for
 postgresql and sqlite of your distro so that diesel will build and

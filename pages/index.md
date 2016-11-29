@@ -14,10 +14,10 @@ looking for a new job.
 
 Recent Articles
 
+- [Russian Dolls and clean Rust code](/posts/russian-dolls.html)
 - [Schemers - Exercise 1](/posts/scheme-ex1.html)
 - [Schemers - Input](/posts/scheme-input.html)
 - [Using Haskell in Rust](/posts/rust-haskell.html)
 - [FFI with Haskell and Rust](/posts/haskell-rust.html)
-- [Why you should be blogging about Rust](/posts/blog-about-rust.html)
 
 </div>

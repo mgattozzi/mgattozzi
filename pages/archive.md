@@ -18,6 +18,7 @@ Articles about various topics in Rust
   Rust](/posts/1-year-of-rust.html)
 - [Understanding where clauses and trait
   constraints](/posts/understanding-where-clauses.html)
+- [Russian Dolls and clean Rust code](/posts/russian-dolls.html)
 
 ## Schemers
 A series of articles aimed at new Rust users to learn the language
