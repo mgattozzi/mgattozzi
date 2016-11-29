@@ -1,5 +1,7 @@
-//$font-serif: Tisa, serif;
-//$font-sans: Helvetica Neue, sans-serif;
+// Font Variables
+$font-serif: Caslon, Garamond, Freight Text, Baskerville, Tisa, serif;
+$font-sans: Helvetica Neue, sans-serif;
+$font-code: Source Code Pro, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
 
 // Header elements
 header {
@@ -45,13 +47,16 @@ body {
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    font-family: $font-serif;
 }
 
 code {
     max-width: 100%;
     min-width: 200px;
     max-width: 768px;
+    font-family: $font-code;
+    font-size: 16px;
 }
 
 a {
@@ -202,9 +207,18 @@ div.post-footer {
 	height:100%;
 }
 
+p {
+  line-height: 1.5;
+}
+
 // Code Blocks
-code {
-  background: lightgrey;
+code:not(.hljs) {
+  background: #1e90ff;
+  color: white;
+  border-radius: 4px 4px 4px 4px;
+  padding: 1px 3px 1px 3px;
+  font-family: $font-code;
+  font-size: 16px;
 }
 
 // Images
@@ -215,4 +229,10 @@ img.post {
     height: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+// Lists
+
+li {
+  margin: 3px;
 }
