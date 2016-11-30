@@ -53,7 +53,7 @@ fn main() {
 fn setup(conf: Config) -> Mount {
     println!("Setting up server");
 
-    if exists(&mkpath("site")) {
+    if !exists(&mkpath("site")) {
         // site doesn't exist yet so create it
         let _ = create_dir("site");
     }

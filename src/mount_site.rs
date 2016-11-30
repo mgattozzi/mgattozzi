@@ -13,6 +13,7 @@ pub fn mount_dirs(mount: &mut Mount) {
     mount.mount("/css", Static::new(mkpath("assets/css/")));
     mount.mount("/js", Static::new(mkpath("assets/js/")));
     mount.mount("/images", Static::new(mkpath("assets/images/")));
+    mount.mount("/fonts", Static::new(mkpath("assets/fonts/")));
 
     // Hardcode the starting page to the root
     mount.mount("/", Static::new(mkpath("site/")));

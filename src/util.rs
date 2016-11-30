@@ -3,7 +3,7 @@ use std::fs::metadata;
 
 /// Does the directory or file exist?
 pub fn exists(path: &Path) -> bool {
-    metadata(path).is_err()
+    metadata(path).is_ok()
 }
 
 pub fn mkpath(path: &str) -> &Path {

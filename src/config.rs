@@ -23,12 +23,10 @@ pub fn css(conf: &Config) -> Option<PreProc> {
         .and_then(|x| x.get("css_processor"))
         .and_then(Value::as_str)
         .and_then(|css_proc|
-            if css_proc == "sass" {
-                Some(PreProc::Sass)
-            } else if css_proc == "less" {
-                Some(PreProc::Less)
-            } else {
-                None
+            match css_proc {
+                "sass" => Some(PreProc::Sass),
+                "less" => Some(PreProc::Less),
+                _ => None,
             })
 }
 

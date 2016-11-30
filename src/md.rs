@@ -49,7 +49,7 @@ fn render_md(from: &Path, mut to: PathBuf) {
     match read_dir(from) {
         Ok(iter) => {
 
-            if from != mkpath("pages") && exists(&to) {
+            if from != mkpath("pages") && !exists(&to) {
                 // Folder doesn't exist yet so create it
                 let _ = create_dir(&to);
             }
