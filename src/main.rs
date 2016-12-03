@@ -2,9 +2,10 @@ extern crate iron;
 extern crate staticfile;
 extern crate mount;
 extern crate clap;
-extern crate crypto;
+extern crate seahash;
 extern crate spongedown;
 extern crate toml;
+extern crate rayon;
 
 mod md;
 mod util;

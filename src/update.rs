@@ -1,6 +1,6 @@
 // Hashing Imports
-use crypto::md5::Md5;
-use crypto::digest::Digest;
+use seahash::hash;
+use rayon::prelude::*;
 
 use std::path::Path;
 use std::fs::{read_dir, File};
@@ -39,24 +39,24 @@ fn watch_pages(dur: u64, dir: &Path){
     // to sleep
     let duration = Duration::new(dur, 0);
 
-    let mut md5_buf = String::new();
-    let mut md5_comp = String::new();
+    let mut sea_buf: String;
+    let mut sea_comp: String;
 
     // Get the hash of all files as is
-    md5sum(&mut md5_comp, &dir);
+    sea_comp = seahash(&dir);
 
 
     loop {
         // Sum our directory then compare replace the current comparison
         // if it's different run the function passed in to be run on difference
-        md5sum(&mut md5_buf, &dir);
-        if md5_buf != md5_comp {
-            md5_comp = md5_buf.clone();
+        sea_buf = seahash(&dir);
+        if sea_buf != sea_comp {
+            sea_comp = sea_buf.clone();
             render_pages();
         }
         sleep(duration);
         // Clear our buffer for another pass
-        md5_buf.clear();
+        sea_buf.clear();
     }
 }
 
@@ -66,30 +66,32 @@ fn watch_css(dur: u64, dir: &Path, pre: &PreProc){
     // to sleep
     let duration = Duration::new(dur, 0);
 
-    let mut md5_buf = String::new();
-    let mut md5_comp = String::new();
+    let mut sea_buf: String;
+    let mut sea_comp: String;
 
     // Get the hash of all files as is
-    md5sum(&mut md5_comp, &dir);
+    sea_comp = seahash(&dir);
 
 
     loop {
         // Sum our directory then compare replace the current comparison
         // if it's different run the function passed in to be run on difference
-        md5sum(&mut md5_buf, &dir);
-        if md5_buf != md5_comp {
-            md5_comp = md5_buf.clone();
+        sea_buf = seahash(&dir);
+        if sea_buf != sea_comp {
+            sea_comp = sea_buf.clone();
             compile_css(&pre);
         }
         sleep(duration);
         // Clear our buffer for another pass
-        md5_buf.clear();
+        sea_buf.clear();
     }
 }
 
-fn md5sum(buffer: &mut String, path: &Path) {
-    // Get a file's contents, md5 it then push into buffer
+fn seahash(path: &Path) -> String {
+    // Get a file's contents, sea it then push into buffer
     // Do so for all files in the directory recursively
+    let mut hashed:Vec<u64> = Vec::new();
+
     match read_dir(path) {
         Ok(iter) => {
             for entry in iter {
@@ -97,15 +99,13 @@ fn md5sum(buffer: &mut String, path: &Path) {
                     Ok(dir) => {
                         let name = dir.path();
                         if name.is_dir() {
-                            md5sum(buffer, &name);
+                            seahash(&name);
                         } else {
-                            let mut md5 = Md5::new();
                             let mut f = File::open(name)
-                                .expect("Unable to open file for md5sum");
-                            let mut buff = String::new();
-                            let _ = f.read_to_string(&mut buff);
-                            md5.input_str(&buff);
-                            buffer.push_str(&md5.result_str());
+                                .expect("Unable to open file for seahash");
+                            let mut buff = Vec::new();
+                            let _ = f.read_to_end(&mut buff);
+                            hashed.push(hash(&buff.as_slice()));
                         }
                     },
                     Err(_) => panic!("Unable to sum files for site"),
@@ -114,4 +114,13 @@ fn md5sum(buffer: &mut String, path: &Path) {
         },
         Err(_) => panic!("Code not run from project root"),
     }
+
+    hashed.into_par_iter()
+          .map(|h| h.to_string())
+          .reduce(|| "".to_string(), |mut acc, h|
+                {
+                    acc.push_str(&h);
+                    acc
+                })
+
 }
