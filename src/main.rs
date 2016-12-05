@@ -29,7 +29,7 @@ use util::{mkpath,exists};
 use css::compile_css;
 use update::file_updater;
 use mount_site::mount_dirs;
-use config::{parse_config, css, Config};
+use config::{get_port, parse_config, css, Config};
 
 /// Setup webserver then launch it
 fn main() {
@@ -42,7 +42,12 @@ fn main() {
 
     if let Some(config) = parse_config() {
 
-        Iron::new(setup(config)).http("127.0.0.1:3000").unwrap();
+        let port = get_port(&config);
+        let address = format!("127.0.0.1:{}", port);
+
+        Iron::new(setup(config, &address))
+             .http(address.as_str())
+             .expect("Failed to start website");
 
     } else {
 
@@ -51,7 +56,7 @@ fn main() {
     }
 }
 
-fn setup(conf: Config) -> Mount {
+fn setup(conf: Config, address: &str) -> Mount {
     println!("Setting up server");
 
     if !exists(&mkpath("site")) {
@@ -69,7 +74,7 @@ fn setup(conf: Config) -> Mount {
 
     file_updater(&conf);
 
-    println!("Server now running");
+    println!("Server now running on {}", address);
 
     mount
 }

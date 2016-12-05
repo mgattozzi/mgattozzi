@@ -40,6 +40,16 @@ pub fn update_duration(conf: &Config) -> u64 {
         .unwrap_or(sleep_default) as u64
 }
 
+pub fn get_port(conf: &Config) -> u64 {
+    let port_default = 3000;
+
+    conf.get("site")
+        .and_then(Value::as_table)
+        .and_then(|x| x.get("port"))
+        .and_then(Value::as_integer)
+        .unwrap_or(port_default) as u64
+}
+
 #[derive(PartialEq, Eq)]
 pub enum PreProc {
     Less,
