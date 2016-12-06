@@ -3,15 +3,30 @@ use std::fs::File;
 use std::io::Read;
 use util::mkpath;
 use toml::{Parser, Value};
+use slog::Logger;
 
 pub type Config = BTreeMap<String, Value>;
 
-pub fn parse_config() -> Option<Config> {
+pub fn parse_config(log: &Logger) -> Option<Config> {
     let config = mkpath("Site.toml");
-    let mut f = File::open(config).expect("Unable to open Site.toml");
-    let mut buff = String::new();
-    let _ = f.read_to_string(&mut buff);
-    Parser::new(&buff).parse()
+    if let Ok(mut f) = File::open(config) {
+        let mut buff = String::new();
+        let _ = f.read_to_string(&mut buff);
+        let parse = Parser::new(&buff).parse();
+        match parse {
+            Some(_) => {
+                info!(log, "Configuration parsed succesfully");
+                parse
+            },
+            None => {
+                error!(log, "Configuration not parsed");
+                None
+            },
+        }
+    } else {
+        error!(log, "Unable to open Site.toml file.");
+        None
+    }
 }
 
 // Note that these lookups aren't using lookup because the functions for the

@@ -5,6 +5,12 @@ extern crate clap;
 extern crate crypto;
 extern crate spongedown;
 extern crate toml;
+#[macro_use]
+extern crate slog;
+extern crate slog_term;
+extern crate slog_atomic;
+extern crate logger;
+extern crate router;
 
 mod md;
 mod util;
@@ -12,6 +18,10 @@ mod css;
 mod update;
 mod mount_site;
 mod config;
+
+// Loggin
+use slog::{Logger, DrainExt};
+use slog_atomic::*;
 
 // Command Argument Imports
 use clap::{App, Arg};
@@ -32,6 +42,10 @@ use config::{get_port, parse_config, css, Config};
 
 /// Setup webserver then launch it
 fn main() {
+    let drain = slog_term::streamer().async().full().build();
+    let drain = AtomicSwitch::new(drain);
+    let root = Logger::root(drain.fuse(), o!());
+    let log = root.new(o!());
 
     let args = App::new("static")
         .version("0.1.0")
@@ -39,24 +53,24 @@ fn main() {
         .about("Personal website")
         .get_matches();
 
-    if let Some(config) = parse_config() {
-
+    if let Some(config) = parse_config(&log) {
         let port = get_port(&config);
         let address = format!("127.0.0.1:{}", port);
 
-        Iron::new(setup(config, &address))
+        Iron::new(setup(config, &address, root))
              .http(address.as_str())
              .expect("Failed to start website");
 
     } else {
 
-        println!("Failed to parse configuration. Make sure your Site.toml file is correct.");
+        error!(log, "Failed to parse configuration. Make sure your Site.toml file is correct.");
 
     }
 }
 
-fn setup(conf: Config, address: &str) -> Mount {
-    println!("Setting up server");
+fn setup(conf: Config, address: &str, root: Logger) -> Mount {
+    let log = root.new(o!());
+    info!(log, "Setting up server");
 
     if !exists(&mkpath("site")) {
         // site doesn't exist yet so create it
@@ -66,14 +80,14 @@ fn setup(conf: Config, address: &str) -> Mount {
     let mut mount = Mount::new();
 
     if let Some(c) = css(&conf) {
-        compile_css(&c);
+        compile_css(&c, &log);
     }
 
-    mount_dirs(&mut mount);
+    mount_dirs(&mut mount, &log);
 
-    file_updater(&conf);
+    file_updater(&conf, root);
 
-    println!("Server now running on {}", address);
+    info!(log, "Server now running on {}", address);
 
     mount
 }

@@ -1,12 +1,14 @@
 // Markdown Imports
 use spongedown::parse;
 
+use slog::Logger;
+
 use util::*;
 use std::path::{Path, PathBuf};
 use std::fs::{create_dir,read_dir, File};
 use std::io::{Read, Write};
 
-pub fn render_pages() {
+pub fn render_pages(log: &Logger) {
     match read_dir("pages") {
         Ok(iter) => {
             for entry in iter {
@@ -17,7 +19,7 @@ pub fn render_pages() {
                             to.push(dir.file_name()
                                     .to_str()
                                     .expect("Failure to get directory filename"));
-                            render_md(&dir.path(), to);
+                            render_md(&dir.path(), to, log);
                         }
                     },
                     Err(_) => panic!("Unable to read from directories for site"),
@@ -28,11 +30,11 @@ pub fn render_pages() {
     }
 
     // Render the top level
-    render_md(mkpath("pages"), PathBuf::from("site"));
+    render_md(mkpath("pages"), PathBuf::from("site"), &log);
 }
 
-fn render_md(from: &Path, mut to: PathBuf) {
-    println!("Rendering Markdown for {}", from.to_str().unwrap());
+fn render_md(from: &Path, mut to: PathBuf, log: &Logger) {
+    info!(log, "Rendering Markdown for {}", from.to_str().unwrap());
     let mut header = String::new();
     let mut head   = String::new();
     let mut footer = String::new();
@@ -94,7 +96,7 @@ fn render_md(from: &Path, mut to: PathBuf) {
         },
         Err(_) => panic!("Code not run from project root"),
     }
-    println!("Rendering Markdown for {} completed", from.to_str().unwrap());
+    info!(log, "Rendering Markdown for {} completed", from.to_str().unwrap());
 }
 
 fn read_in_includes(mut h_buf: &mut String, mut b_buf: &mut String, mut f_buf: &mut String, mut p_buf: &mut Option<String>) {

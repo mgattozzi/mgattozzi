@@ -5,17 +5,17 @@ use util::mkpath;
 use md::render_pages;
 use config::PreProc;
 use config::PreProc::{Sass,Less};
+use slog::Logger;
 
-pub fn compile_css(proccesor: &PreProc) {
+pub fn compile_css(proccesor: &PreProc, log: &Logger) {
     match proccesor {
-        &Sass => compile_sass(),
-        &Less => compile_less(),
+        &Sass => compile_sass(log),
+        &Less => compile_less(log),
     }
 }
 
-fn compile_sass() {
-    println!("Compiling sass");
-
+fn compile_sass(log: &Logger) {
+    info!(log, "Compiling sass");
     let output = Command::new("sass")
                         .arg("sass/main.scss")
                         .output()
@@ -28,12 +28,12 @@ fn compile_sass() {
         .expect("Unable to create css file");
     let _ = css.write_all(sass.as_bytes());
 
-    println!("Compiling sass completed");
-    render_pages();
+    info!(log, "Compiling sass completed");
+    render_pages(log);
 }
 
-fn compile_less() {
-    println!("Compiling less");
+fn compile_less(log: &Logger) {
+    info!(log, "Compiling less");
 
     let output = Command::new("lessc")
                         .arg("less/main.less")
@@ -47,6 +47,6 @@ fn compile_less() {
         .expect("Unable to create css file");
     let _ = css.write_all(less.as_bytes());
 
-    println!("Compiling less completed");
-    render_pages();
+    info!(log, "Compiling less completed");
+    render_pages(log);
 }

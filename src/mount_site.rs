@@ -1,21 +1,19 @@
 // Web Library Imports
 use staticfile::Static;
 use mount::Mount;
-
+use slog::Logger;
 use std::fs::read_dir;
 use util::mkpath;
 
-/// Mount directories prior to launch
-pub fn mount_dirs(mount: &mut Mount) {
-    println!("Mounting files");
+/// Mount directories and routes prior to launch
+pub fn mount_dirs(mount: &mut Mount, log: &Logger) {
+    info!(log, "Mounting files");
 
     // Mount all of the assets
     mount.mount("/css", Static::new(mkpath("assets/css/")));
     mount.mount("/js", Static::new(mkpath("assets/js/")));
     mount.mount("/images", Static::new(mkpath("assets/images/")));
     mount.mount("/fonts", Static::new(mkpath("assets/fonts/")));
-
-    // Hardcode the starting page to the root
     mount.mount("/", Static::new(mkpath("site/")));
 
     // Mount each directory to the site
@@ -42,5 +40,5 @@ pub fn mount_dirs(mount: &mut Mount) {
         Err(_) => panic!("Code not run from project root"),
     }
 
-    println!("Mounting files completed");
+    info!(log, "Mounting files completed");
 }
