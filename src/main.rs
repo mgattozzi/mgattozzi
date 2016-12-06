@@ -9,6 +9,7 @@ extern crate toml;
 extern crate slog;
 extern crate slog_term;
 extern crate slog_atomic;
+extern crate slog_stdlog;
 extern crate logger;
 extern crate router;
 
@@ -27,7 +28,7 @@ use slog_atomic::*;
 use clap::{App, Arg};
 
 // Web Library Imports
-use iron::Iron;
+use iron::{Iron, Chain};
 use mount::Mount;
 
 // Standard Library Imports
@@ -42,6 +43,7 @@ use config::{get_port, parse_config, css, Config};
 
 /// Setup webserver then launch it
 fn main() {
+    slog_stdlog::init().unwrap();
     let drain = slog_term::streamer().async().full().build();
     let drain = AtomicSwitch::new(drain);
     let root = Logger::root(drain.fuse(), o!());
@@ -57,7 +59,14 @@ fn main() {
         let port = get_port(&config);
         let address = format!("127.0.0.1:{}", port);
 
-        Iron::new(setup(config, &address, root))
+        let mut chain = Chain::new(setup(config, &address, root));
+
+        // Initialize logging with default output.
+        let (logger_before, logger_after) = logger::Logger::new(None);
+        chain.link_before(logger_before);
+        chain.link_after(logger_after);
+
+        Iron::new(chain)
              .http(address.as_str())
              .expect("Failed to start website");
 
