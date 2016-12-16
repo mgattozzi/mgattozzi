@@ -237,5 +237,6 @@ worry we'll go through it step by step. I encourage you, in the
 meantime, to make sure you understand what we've done so far!
 
 You can find the code from this exercise [here](https://github.com/mgattozzi/schemers/tree/Exercise_1).
-The previous article can be found [here](https://mgattozzi.github.io/2016/11/08/scheme-input.html).
+The previous article can be found [here](https://mgattozzi.com/scheme-input.html).
+The next article can be found [here](https://mgattozzi.com/scheme-parser.html).
 

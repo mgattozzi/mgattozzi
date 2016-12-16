@@ -25,7 +25,7 @@ A series of articles aimed at new Rust users to learn the language
 by writing a scheme interpreter. These are listed in order.
 - [Input](/posts/scheme-input.html)
 - [Exercise 1](/posts/scheme-ex1.html)
-- [Syntax Checking and Errors](/posts/scheme-error.html)
+- [Parser 1](/posts/scheme-parser.html)
 
 ## Haskell and Rust
 Articles doing FFI with Haskell and Rust
