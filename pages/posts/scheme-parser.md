@@ -160,7 +160,7 @@ rustyline = "1.0.0"
 Add this line under `rustyline`:
 
 ```toml
-nom = "^2.0.0"
+nom = "~2.0.0"
 ```
 
 This is saying, "Use the `nom` library v2.0.0 but if there is any version
@@ -288,9 +288,9 @@ fn read_file(file: &str) -> Result<String, Error> {
     };
 
     match handle.read_to_string(&mut buffer) {
-        Ok(_) => (),
+        Ok(a) => a,
         Err(e) => return Err(e),
-    }
+    };
 
     Ok(buffer)
 }
@@ -299,28 +299,9 @@ fn read_file(file: &str) -> Result<String, Error> {
 Both now do a match on the function. In each of them we use `return`
 to tell Rust to stop execution and return this value. Often you
 shouldn't need it since the last expression without a semicolon is the
-return value. However, in this case we do need it.
-
-You might have noticed a subtle difference. Their `Ok` lines are
-different!
-
-```rust
-Ok(a) => a,
-Ok(_) => (),
-```
-
-The first one returns whatever is inside it and the other says hey no
-matter what is returned just use a `()` which is what's returned if
-there is no value at the end. Technically `main` returns this value when
-it's done. `read_to_string` does return a `usize` as part of it but if
-we use that instead of `()` the compilation fails. The `try!()` macro
-knew this though and figured out what to do. Neat huh?
-
-Macros allow flexible code generation based off sets of rules defined in
-them meaning we can have it work differently depending on the context
-and inputs! Macros are quite powerful and if you're willing to learn
-them you can do some real neat things. We won't be writing our own, for
-the near future at least. Instead let's use some to start parsing!
+return value. However, in this case we do need it. If we had to do this
+expansion for every single `Result` type though it would be a pain.
+That's why we have `try!()`.
 
 You might have heard about the new `?` syntax that can be used in place
 of `try!()`. It looks like this if being used:
@@ -338,8 +319,13 @@ fn read_file(file: &str) -> Result<String, Error> {
 
 I personally like it, others do not, really just use whichever one works
 for you or is more readable since it does the same thing. It was added
-syntax though because this pattern was so common in Rust programs. Now
-that you know a bit about macros we can move on!
+syntax though because this pattern was so common in Rust programs.
+
+Macros allow flexible code generation based off sets of rules defined in
+them meaning we can have it work differently depending on the context
+and inputs! Macros are quite powerful and if you're willing to learn
+them you can do some real neat things. We won't be writing our own, for
+the near future at least. Instead let's use some to start parsing!
 
 # Rustacean's First Parser
 
