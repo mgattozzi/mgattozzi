@@ -126,13 +126,11 @@ using one of these libraries in our own project! That's later though.
 Let's take a look inside our project directory. It'll look like this:
 
 ```bash
-.
-├── Cargo.toml
-├── .gitignore
-├── .git
-│   └── //ommitted
-└── src
-    └── main.rs
+Cargo.toml
+.gitignore
+.git
+src
+main.rs
 ```
 
 Let's start with the `git` portion. `cargo` automatically initializes
