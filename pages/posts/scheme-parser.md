@@ -331,7 +331,16 @@ the near future at least. Instead let's use some to start parsing!
 
 Let's write a simple parser that takes input and returns a `String` type.
 In `nom` everything is read in as raw bytes, represented as an array of
-bytes or &[u8]. Let's actually start writing some code:
+bytes or &[u8]. Let's actually start writing some code.
+
+First you need to put this at the top of `parser.rs` so that it can use
+functions from `nom` that aren't macros:
+
+```rust
+use nom::*;
+```
+
+Now we can write our first parser:
 
 ```rust
 named!(string<&[u8], String>,
