@@ -14,10 +14,10 @@ looking for a new job.
 
 Recent Articles
 
+- [Announcing Pipers](/posts/pipers.html)
 - [Schemers - Parser 1](/posts/scheme-parser.html)
 - [Russian Dolls and clean Rust code](/posts/russian-dolls.html)
 - [Schemers - Exercise 1](/posts/scheme-ex1.html)
 - [Schemers - Input](/posts/scheme-input.html)
-- [Using Haskell in Rust](/posts/rust-haskell.html)
 
 </div>
