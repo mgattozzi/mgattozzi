@@ -4,21 +4,5 @@ version = "0.1.0"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 
 [dependencies]
-iron = "*"
-staticfile = "*"
-mount = "*"
-spongedown = "0.1.1"
-clap = "*"
-rust-crypto = "^0.2"
-toml = "0.2"
-slog = "*"
-slog-term = "*"
-slog-stdlog = "*"
-slog-atomic = "*"
-slog-stream = "*"
-
-[dependencies.logger]
-git = "https://github.com/iron/logger.git"
-
-[dependencies.router]
-git = "https://github.com/iron/router.git"
+rocket = "~0.1"
+rocket_codegen = "~0.1"

@@ -1,9 +1,0 @@
-[site]
-# What port do you want the site to run on?
-port = 3000
-# How long between each check to see if files changed?
-sleep_update = 5
-
-[css]
-# Accepted values: less or sass or none
-css_processor = "sass"

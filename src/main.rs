@@ -1,102 +1,33 @@
-extern crate iron;
-extern crate staticfile;
-extern crate mount;
-extern crate clap;
-extern crate crypto;
-extern crate spongedown;
-extern crate toml;
-#[macro_use]
-extern crate slog;
-extern crate slog_term;
-extern crate slog_atomic;
-extern crate slog_stdlog;
-extern crate logger;
-extern crate router;
+#![feature(plugin)]
+#![plugin(rocket_codegen)]
 
-mod md;
-mod util;
-mod css;
-mod update;
-mod mount_site;
-mod config;
+extern crate rocket;
+use rocket::response::NamedFile;
+use std::path::{Path, PathBuf};
 
-// Loggin
-use slog::{Logger, DrainExt};
-use slog_atomic::*;
-
-// Command Argument Imports
-use clap::{App, Arg};
-
-// Web Library Imports
-use iron::{Iron, Chain};
-use mount::Mount;
-
-// Standard Library Imports
-use std::fs::create_dir;
-
-// Binary Function Imports
-use util::{mkpath,exists};
-use css::compile_css;
-use update::file_updater;
-use mount_site::mount_dirs;
-use config::{get_port, parse_config, css, Config};
-
-/// Setup webserver then launch it
-fn main() {
-    slog_stdlog::init().unwrap();
-    let drain = slog_term::streamer().async().full().build();
-    let drain = AtomicSwitch::new(drain);
-    let root = Logger::root(drain.fuse(), o!());
-    let log = root.new(o!());
-
-    let args = App::new("static")
-        .version("0.1.0")
-        .author("Michael Gattozzi <mgattozzi@gmail.com>")
-        .about("Personal website")
-        .get_matches();
-
-    if let Some(config) = parse_config(&log) {
-        let port = get_port(&config);
-        let address = format!("127.0.0.1:{}", port);
-
-        let mut chain = Chain::new(setup(config, &address, root));
-
-        // Initialize logging with default output.
-        let (logger_before, logger_after) = logger::Logger::new(None);
-        chain.link_before(logger_before);
-        chain.link_after(logger_after);
-
-        Iron::new(chain)
-             .http(address.as_str())
-             .expect("Failed to start website");
-
-    } else {
-
-        error!(log, "Failed to parse configuration. Make sure your Site.toml file is correct.");
-
-    }
+#[get("/static/<file..>")]
+fn static_files(file: PathBuf) -> Option<NamedFile>{
+     NamedFile::open(Path::new("src/client/static").join(file)).ok()
 }
 
-fn setup(conf: Config, address: &str, root: Logger) -> Mount {
-    let log = root.new(o!());
-    info!(log, "Setting up server");
+#[get("/public/<file..>")]
+fn public(file: PathBuf) -> Option<NamedFile>{
+     NamedFile::open(Path::new("src/client/public").join(file)).ok()
+}
 
-    if !exists(&mkpath("site")) {
-        // site doesn't exist yet so create it
-        let _ = create_dir("site");
-    }
+#[get("/")]
+fn index() -> Option<NamedFile> {
+    NamedFile::open("src/client/index.html").ok()
+}
 
-    let mut mount = Mount::new();
+#[get("/<path..>")]
+fn site(path: PathBuf) -> Option<NamedFile> {
+    let _ = path;
+    NamedFile::open("src/client/index.html").ok()
+}
 
-    if let Some(c) = css(&conf) {
-        compile_css(&c, &log);
-    }
-
-    mount_dirs(&mut mount, &log);
-
-    file_updater(&conf, root);
-
-    info!(log, "Server now running on {}", address);
-
-    mount
+fn main() {
+    // Put site last so that path collision tries others
+    // first
+    rocket::ignite().mount("/", routes![public, static_files, index, site]).launch();
 }

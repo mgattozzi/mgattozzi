@@ -1,5 +1,4 @@
 target
-.sass-cache
-.hotload
-site
-assets/css/main.css
+src/client/public
+node_modules
+
