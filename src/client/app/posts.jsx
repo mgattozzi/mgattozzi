@@ -19,6 +19,7 @@ import schemeInput from 'raw-loader!./posts/scheme-input.md';
 import schemeParser from 'raw-loader!./posts/scheme-parser.md';
 import schrodingersBug from 'raw-loader!./posts/schrodingers-bug.md';
 import whereClauses from 'raw-loader!./posts/understanding-where-clauses.md';
+import rustIs from 'raw-loader!./posts/rust-is.md';
 
 var md = new Remarkable({
   html: true,
@@ -117,6 +118,12 @@ export class SchrodingersBug extends React.Component {
 export class WhereClauses extends React.Component {
   render () {
     const fileHtml = {__html: md.render(eval(whereClauses))};
+    return( <div dangerouslySetInnerHTML={fileHtml}></div>);
+  }
+}
+export class RustIs extends React.Component {
+  render () {
+    const fileHtml = {__html: md.render(eval(rustIs))};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }

@@ -24,11 +24,12 @@ class Main extends React.Component {
           <div>
             Recent Articles
             <ul>
-              <li><a href="/posts/pipers.html">Announcing Pipers</a></li>
-              <li><a href="/posts/scheme-parser.html">Schemers - Parser 1</a></li>
-              <li><a href="/posts/russian-dolls.html">Russian Dolls and clean Rust code</a></li>
-              <li><a href="/posts/scheme-ex1.html">Schemers - Exercise 1</a></li>
-              <li><a href="/posts/scheme-input.html">Schemers - Input</a></li>
+              <li><Link to="/rust-is">Rust is it's community</Link></li>
+              <li><Link to="/pipers">Announcing Pipers</Link></li>
+              <li><Link to="/scheme-parser">Schemers - Parser 1</Link></li>
+              <li><Link to="/russian-dolls">Russian Dolls and clean Rust code</Link></li>
+              <li><Link to="/scheme-ex1">Schemers - Exercise 1</Link></li>
+              <li><Link to="/scheme-input">Schemers - Input</Link></li>
             </ul>
           </div>
         </div>

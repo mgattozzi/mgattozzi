@@ -22,6 +22,7 @@ import {
   Pipers,
   RussianDolls,
   RustHaskell,
+  RustIs,
   SchemeEx1,
   SchemeInput,
   SchemeParser,
@@ -46,6 +47,7 @@ render(
             <Route path="pipers" component={Pipers}/>
             <Route path="russian-dolls" component={RussianDolls}/>
             <Route path="rust-haskell" component={RustHaskell}/>
+            <Route path="rust-is" component={RustIs}/>
             <Route path="scheme-ex1" component={SchemeEx1}/>
             <Route path="scheme-input" component={SchemeInput}/>
             <Route path="scheme-parser" component={SchemeParser}/>

@@ -40,6 +40,9 @@ class Archive extends React.Component {
             <li><Link to="/pipers">
               Announcing Pipers
             </Link></li>
+            <li><Link to="/rust-is">
+              Rust is it's community
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>
