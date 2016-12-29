@@ -24,7 +24,7 @@ class Main extends React.Component {
           <div>
             Recent Articles
             <ul>
-              <li><Link to="/rust-is">Rust is it's community</Link></li>
+              <li><Link to="/rust-is">Rust is its community</Link></li>
               <li><Link to="/pipers">Announcing Pipers</Link></li>
               <li><Link to="/scheme-parser">Schemers - Parser 1</Link></li>
               <li><Link to="/russian-dolls">Russian Dolls and clean Rust code</Link></li>
