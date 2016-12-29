@@ -60,7 +60,7 @@ tooling is getting better with things like rustup 1.0 and we have some novel thi
 like the borrow checker but the language doesn't push anything beyond
 what languages before have established really. Its the community that has
 grown the language and just shared its enthusiasm with others that has
-made it so successful with those its gotten to use the language so far. I think
+made it so successful with those who've gotten to use the language so far. I think
 that safety and speed will grab a few people in a pitch but really the
 thing that has caused people to stick around is the sense of community
 that Rust fosters. Its easy to get help. Its easy to find good documentation
