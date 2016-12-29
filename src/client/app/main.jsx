@@ -59,6 +59,7 @@ class Main extends React.Component {
                           <li><Link to="/archive" activeClassName="active">Archive</Link></li>
                           <li><Link to="/contact" activeClassName="active">Contact</Link></li>
                           <li><Link to="/resume" activeClassName="active">Resume</Link></li>
+                          <li><a href="https://github.com/mgattozzi">Github</a></li>
                       </ul>
                   </div>
               </div>
