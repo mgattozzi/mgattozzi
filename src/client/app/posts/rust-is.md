@@ -73,7 +73,7 @@ actively and selflessly helping users as well as encouraging people to
 contribute. It is all of these things and more because of the people
 who work on it.
 
-Rust is more then just a language. Its the community involved in
+Rust is more then just a language. It is the community involved in
 fostering its growth in a way that I've rarely seen and one that makes
 me want to stick around and get others to use it because I know they
 will enjoy working with some incredible, welcoming, and warm people that

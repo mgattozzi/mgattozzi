@@ -39,6 +39,15 @@ class Main extends React.Component {
     }
   }
   render () {
+    const divStyle = {
+      fontFamily: 'Georgia, Serif',
+      fontSize: '16px',
+      lineHeight: '1.5',
+      maxWidth: '42em',
+      hyphens: 'auto',
+      WebkitHyphens: 'auto',
+    };
+
     return(
     <div>
          <link rel="stylesheet" href="/static/css/styles/github.css"></link>
@@ -66,7 +75,7 @@ class Main extends React.Component {
               </div>
           </nav>
       </div>
-      <div className="container">
+      <div className="container" style={divStyle}>
         {this.containerData()}
       </div>
     </div>
