@@ -3,8 +3,7 @@ import React from 'react';
 import {render} from 'react-dom';
 
 // React Router
-import { Router, Route, Link, browserHistory} from 'react-router'
-import ReactMarkdown from 'react-markdown'
+import { Router, Route, Link, browserHistory } from 'react-router'
 
 // Nav Bar Pages
 import About from './about.jsx';

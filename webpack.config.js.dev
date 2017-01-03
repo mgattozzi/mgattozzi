@@ -1,14 +1,22 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
+var BUILD_DIR = path.join(__dirname, 'src/client/public');
+var APP_DIR = path.join(__dirname, 'src/client/app');
 
 var config = {
+  devtool: 'eval',
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    sourceMapFilename: "bundle.js.map",
+  },
+  resolve: {
+    extensions: ["",".js",".jsx"],
+    alias: {
+      "highlight.js": path.join(__dirname, "highlight.js/build/highlight.min.js"),
+    },
   },
   module : {
     loaders : [
@@ -32,13 +40,6 @@ var config = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
   ]
 };
 

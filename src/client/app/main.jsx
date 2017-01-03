@@ -50,7 +50,6 @@ class Main extends React.Component {
 
     return(
     <div>
-         <link rel="stylesheet" href="/static/css/styles/github.css"></link>
          <div>
           <nav className="navbar navbar-default">
               <div className="container-fluid">

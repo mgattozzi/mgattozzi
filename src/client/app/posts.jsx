@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactMarkdown from 'react-markdown'
 import Remarkable from 'remarkable'
 import hljs from 'highlight.js'
 
