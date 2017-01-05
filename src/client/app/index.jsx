@@ -11,6 +11,7 @@ import Archive from './archive.jsx';
 import Contact from './contact.jsx';
 import Main from './main.jsx';
 import Resume from './resume.jsx';
+import Count from './count.jsx';
 import {
   Alchemist,
   BlogRust,
@@ -36,6 +37,7 @@ render(
             <Route path="about" component={About}/>
             <Route path="archive" component={Archive}/>
             <Route path="contact" component={Contact}/>
+            <Route path="counting" component={Count}/>
             <Route path="resume" component={Resume}/>
             <Route path="announcing-alchemist" component={Alchemist}/>
             <Route path="blog-about-rust" component={BlogRust}/>

@@ -1,8 +1,28 @@
 [package]
 name = "mgattozzi"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 
+[[bin]]
+name = "mgattozzi"
+path = "src/bin/main.rs"
+
+[lib]
+name = "mlib"
+path = "src/lib.rs"
+
 [dependencies]
-rocket = "~0.1"
-rocket_codegen = "~0.1"
+# Rocket Server Deps
+rocket = "~0.1.0"
+rocket_codegen = "~0.1.0"
+rocket_contrib = "~0.1.0"
+
+# JSON Deps
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+
+# DB Deps
+diesel = { version = "~0.9.0", features = ["postgres"] }
+diesel_codegen = { version = "~0.9.0", features = ["postgres"] }
+dotenv = "~0.8.0"
