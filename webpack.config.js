@@ -16,6 +16,8 @@ var config = {
     extensions: ["",".js",".jsx"],
     alias: {
       "highlight.js": path.join(__dirname, "highlight.js/build/highlight.min.js"),
+      "react": "preact-compat",
+      "react-dom": "preact-compat"
     },
   },
   module : {
