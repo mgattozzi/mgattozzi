@@ -1,6 +1,8 @@
-#![feature(plugin, proc_macro, custom_derive, custom_attribute)]
+#![feature(plugin, custom_derive, custom_attribute)]
 #![plugin(rocket_codegen)]
 
+#[macro_use]
+extern crate lazy_static;
 extern crate rocket;
 extern crate rocket_contrib;
 extern crate diesel;
@@ -8,8 +10,17 @@ extern crate mlib;
 #[macro_use]
 extern crate serde_derive;
 extern crate serde_json;
+extern crate r2d2;
+extern crate r2d2_diesel;
 
 // Server Imports
+// Used to Setup DB Pool
+use rocket::request::{Outcome, FromRequest};
+use rocket::Outcome::{Success, Failure};
+use rocket::http::Status;
+
+// Used for Routes
+use rocket::Request;
 use rocket::response::NamedFile;
 use rocket_contrib::JSON;
 
@@ -19,14 +30,39 @@ use std::path::{Path, PathBuf};
 // DB Imports
 use diesel::prelude::*;
 use diesel::update;
+use diesel::pg::PgConnection;
+use r2d2::{Pool, PooledConnection, GetTimeout};
+use r2d2_diesel::ConnectionManager;
 use mlib::models::*;
 use mlib::*;
-
 
 fn main() {
     // Put site last so that path collision tries others
     // first
     rocket::ignite().mount("/", routes![count, count_update, public, static_files, index, site]).launch();
+}
+
+// DB Items
+lazy_static! {
+    pub static ref DB_POOL: Pool<ConnectionManager<PgConnection>> = create_db_pool();
+}
+
+pub struct DB(PooledConnection<ConnectionManager<PgConnection>>);
+
+impl DB {
+    pub fn conn(&self) -> &PgConnection {
+        &*self.0
+    }
+}
+
+impl<'a, 'r> FromRequest<'a, 'r> for DB {
+    type Error = GetTimeout;
+    fn from_request(_: &'a Request<'r>) -> Outcome<Self, Self::Error> {
+        match DB_POOL.get() {
+            Ok(conn) => Success(DB(conn)),
+            Err(e) => Failure((Status::InternalServerError, e)),
+        }
+    }
 }
 
 // Routes
@@ -52,10 +88,9 @@ fn site(path: PathBuf) -> Option<NamedFile> {
 }
 
 #[get("/count")]
-fn count() -> JSON<Clicks> {
+fn count(db: DB) -> JSON<Clicks> {
     use mlib::schema::counts::dsl::*;
-    let connection = establish_connection();
-    let result = counts.first::<Count>(&connection)
+    let result = counts.first::<Count>(db.conn())
         .expect("Error loading clicks");
 
     JSON(Clicks {
@@ -64,16 +99,15 @@ fn count() -> JSON<Clicks> {
 }
 
 #[put("/count")]
-fn count_update() -> JSON<Clicks> {
+fn count_update(db: DB) -> JSON<Clicks> {
     use mlib::schema::counts::dsl::*;
-    let connection = establish_connection();
-    let query = counts.first::<Count>(&connection)
+    let query = counts.first::<Count>(db.conn())
         .expect("Error loading clicks");
     let val = query.clicks + 1;
 
     update(counts.find(1))
         .set(clicks.eq(val))
-        .execute(&connection)
+        .execute(db.conn())
         .unwrap();
 
     JSON(Clicks {

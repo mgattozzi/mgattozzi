@@ -1,5 +1,5 @@
 [dev]
-port = 3000
+port = 4000
 [staging]
 port = 3000
 [prod]

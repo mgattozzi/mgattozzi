@@ -28,7 +28,7 @@ class Count extends React.Component {
     fetch('https://mgattozzi.com/count/')
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({count: responseJson.count + 1, disabled: false});
+        this.setState({count: responseJson.count, disabled: false});
       })
       .catch(console.err);
   }

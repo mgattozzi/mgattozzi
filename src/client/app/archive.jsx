@@ -43,6 +43,9 @@ class Archive extends React.Component {
             <li><Link to="/rust-is">
               Rust is its community
             </Link></li>
+            <li><Link to="/diesel-powered-rocket">
+              Diesel Powered Rocket
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>

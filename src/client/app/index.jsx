@@ -15,6 +15,7 @@ import Count from './count.jsx';
 import {
   Alchemist,
   BlogRust,
+  DieselRocket,
   HaskellRust,
   StdMacros,
   StrString,
@@ -38,6 +39,7 @@ render(
             <Route path="archive" component={Archive}/>
             <Route path="contact" component={Contact}/>
             <Route path="counting" component={Count}/>
+            <Route path="diesel-powered-rocket" component={DieselRocket}/>
             <Route path="resume" component={Resume}/>
             <Route path="announcing-alchemist" component={Alchemist}/>
             <Route path="blog-about-rust" component={BlogRust}/>
