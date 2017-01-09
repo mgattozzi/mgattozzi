@@ -5,7 +5,7 @@ class Count extends React.Component {
   constructor() {
     super();
     this.state = { count: 0, disabled: false};
-    fetch('http://localhost:3000/count')
+    fetch('https://mgattozzi.com/count')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({count: responseJson.count});
@@ -20,12 +20,12 @@ class Count extends React.Component {
 
   clickMe() {
     this.setState({disabled: true});
-    fetch('http://mgattozzi.com/count/', {method: 'PUT'})
+    fetch('https://mgattozzi.com/count/', {method: 'PUT'})
       .then(setTimeout(() => this.updateCount(), 3000));
   }
 
   updateCount() {
-    fetch('http://mgattozzi.com/count/')
+    fetch('https://mgattozzi.com/count/')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({count: responseJson.count + 1, disabled: false});
