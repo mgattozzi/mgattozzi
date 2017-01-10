@@ -18,7 +18,7 @@ import schemeParser from 'raw-loader!./posts/scheme-parser.md';
 import schrodingersBug from 'raw-loader!./posts/schrodingers-bug.md';
 import whereClauses from 'raw-loader!./posts/understanding-where-clauses.md';
 import rustIs from 'raw-loader!./posts/rust-is.md';
-import dieselRocket from 'raw-loader!./posts/diesel-powered-rocket.md';
+//import dieselRocket from 'raw-loader!./posts/diesel-powered-rocket.md';
 
 var md = new Remarkable({
   html: true,
@@ -128,7 +128,7 @@ export class RustIs extends React.Component {
 }
 export class DieselRocket extends React.Component {
   render () {
-    const fileHtml = {__html: md.render(eval(dieselRocket))};
+    const fileHtml = {__html: md.render("")};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }

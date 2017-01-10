@@ -15,22 +15,15 @@ class Count extends React.Component {
       });
 
     this.clickMe = this.clickMe.bind(this);
-    this.updateCount = this.updateCount.bind(this);
   }
 
   clickMe() {
     this.setState({disabled: true});
     fetch('https://mgattozzi.com/count/', {method: 'PUT'})
-      .then(setTimeout(() => this.updateCount(), 3000));
-  }
-
-  updateCount() {
-    fetch('https://mgattozzi.com/count/')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({count: responseJson.count, disabled: false});
       })
-      .catch(console.err);
   }
 
   render () {
