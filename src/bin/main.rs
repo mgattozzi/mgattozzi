@@ -39,7 +39,17 @@ use mlib::*;
 fn main() {
     // Put site last so that path collision tries others
     // first
-    rocket::ignite().mount("/", routes![count, count_update, public, static_files, index, site]).launch();
+    rocket::ignite()
+        .mount("/", routes![
+            count,
+            count_update,
+            public,
+            keybase,
+            static_files,
+            index,
+            site
+        ])
+        .launch();
 }
 
 // DB Items
@@ -74,6 +84,11 @@ fn static_files(file: PathBuf) -> Option<NamedFile>{
 #[get("/public/<file..>")]
 fn public(file: PathBuf) -> Option<NamedFile>{
      NamedFile::open(Path::new("src/client/public").join(file)).ok()
+}
+
+#[get("/keybase.txt")]
+fn keybase() -> Option<NamedFile> {
+    NamedFile::open("src/client/keybase.txt").ok()
 }
 
 #[get("/")]
