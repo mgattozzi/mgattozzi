@@ -23,7 +23,7 @@ class Contact extends React.Component {
 
           If you need to contact me securely you can use my public PGP key
           to encrypt your message. You can find it and proofs of my identity
-          on [keybase.io here](https://keybase.io/mgattozzi).
+          on keybase.io <a href="https://keybase.io/mgattozzi">here</a>.
           <pre style={codeStyle} className="center-block"><code>
               -----BEGIN PGP PUBLIC KEY BLOCK-----<br></br>
               Version: GnuPG v2<br></br>

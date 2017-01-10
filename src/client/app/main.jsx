@@ -65,11 +65,11 @@ class Main extends React.Component {
                   </div>
                   <div className="collapse navbar-collapse" id="nav-top-data">
                       <ul className="nav navbar-nav">
-                          <li><Link to="/about" activeClassName="active">About</Link></li>
-                          <li><Link to="/archive" activeClassName="active">Archive</Link></li>
-                          <li><Link to="/contact" activeClassName="active">Contact</Link></li>
-                          <li><Link to="/resume" activeClassName="active">Resume</Link></li>
-                          <li><a href="https://github.com/mgattozzi">Github</a></li>
+                          <li><Link to="/about" className="glyphicon glyphicon-user" activeClassName="active"> About</Link></li>
+                          <li><Link to="/archive" className="glyphicon glyphicon-pencil" activeClassName="active"> Archive</Link></li>
+                          <li><Link to="/contact" className="glyphicon glyphicon-envelope" activeClassName="active"> Contact</Link></li>
+                          <li><Link to="/resume" className="glyphicon glyphicon-list" activeClassName="active"> Resume</Link></li>
+                          <li><a className="glyphicon glyphicon-console" href="https://github.com/mgattozzi"> Github</a></li>
                       </ul>
                   </div>
               </div>
