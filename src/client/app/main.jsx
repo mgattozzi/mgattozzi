@@ -65,11 +65,30 @@ class Main extends React.Component {
                   </div>
                   <div className="collapse navbar-collapse" id="nav-top-data">
                       <ul className="nav navbar-nav">
-                          <li><Link to="/about" className="glyphicon glyphicon-user" activeClassName="active"> About</Link></li>
-                          <li><Link to="/archive" className="glyphicon glyphicon-pencil" activeClassName="active"> Archive</Link></li>
-                          <li><Link to="/contact" className="glyphicon glyphicon-envelope" activeClassName="active"> Contact</Link></li>
-                          <li><Link to="/resume" className="glyphicon glyphicon-list" activeClassName="active"> Resume</Link></li>
-                          <li><a className="glyphicon glyphicon-console" href="https://github.com/mgattozzi"> Github</a></li>
+                        <li><Link to="/about"
+                                  className="glyphicon glyphicon-user"
+                                  activeClassName="active">
+                                  &nbsp;About
+                        </Link></li>
+                        <li><Link to="/archive"
+                                  className="glyphicon glyphicon-pencil"
+                                  activeClassName="active">
+                                   &nbsp;Archive
+                        </Link></li>
+                        <li><Link to="/contact"
+                                  className="glyphicon glyphicon-envelope"
+                                  activeClassName="active">
+                                  &nbsp;Contact
+                        </Link></li>
+                        <li><Link to="/resume"
+                                  className="glyphicon glyphicon-list"
+                                  activeClassName="active">
+                                  &nbsp;Resume
+                        </Link></li>
+                        <li><a className="glyphicon glyphicon-console"
+                               href="https:/github.com/mgattozzi">
+                               &nbsp;Github
+                        </a></li>
                       </ul>
                   </div>
               </div>
