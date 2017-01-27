@@ -250,7 +250,7 @@ Of course we now have all this code but does it work? Using `ngrok` as
 a proxy and a webhook I set up on a repo, I tested the code and here is
 what it looks like while being run!
 
-<img class="center-block img-responsive" src="./static/images/hyper.jpg" alt="Showing Webhook works!">
+<img class="center-block img-responsive" src="../../static/images/hyper.jpg" alt="Showing Webhook works!">
 
 Success! We have a working web server that can handle JSON!
 
