@@ -46,6 +46,9 @@ class Archive extends React.Component {
             <li><Link to="/diesel-powered-rocket">
               Diesel Powered Rocket
             </Link></li>
+            <li><Link to="/hyper-async">
+                Building an Asynchronous Hyper Server
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>

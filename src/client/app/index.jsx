@@ -20,6 +20,7 @@ import {
   StdMacros,
   StrString,
   OneRust,
+  HyperAsync,
   Pipers,
   RussianDolls,
   RustHaskell,
@@ -56,6 +57,7 @@ render(
             <Route path="scheme-parser" component={SchemeParser}/>
             <Route path="schrodingers-bug" component={SchrodingersBug}/>
             <Route path="understanding-where-clauses" component={WhereClauses}/>
+            <Route path="hyper-async" component={HyperAsync}/>
           </Route>
         </Router>
       </div>
