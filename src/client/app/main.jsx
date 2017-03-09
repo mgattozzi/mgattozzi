@@ -24,6 +24,7 @@ class Main extends React.Component {
           <div>
             Recent Articles
             <ul>
+              <li><Link to="/hyper-client">Using an Async Hyper Client</Link></li>
               <li><Link to="/hyper-async">Building an Asynchronous Hyper Server</Link></li>
               <li><Link to="/diesel-powered-rocket">Diesel Powered Rocket</Link></li>
               <li><Link to="/rust-is">Rust is its community</Link></li>

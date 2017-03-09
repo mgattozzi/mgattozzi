@@ -21,6 +21,7 @@ import {
   StrString,
   OneRust,
   HyperAsync,
+  HyperClient,
   Pipers,
   RussianDolls,
   RustHaskell,
@@ -58,6 +59,7 @@ render(
             <Route path="schrodingers-bug" component={SchrodingersBug}/>
             <Route path="understanding-where-clauses" component={WhereClauses}/>
             <Route path="hyper-async" component={HyperAsync}/>
+            <Route path="hyper-client" component={HyperClient}/>
           </Route>
         </Router>
       </div>
