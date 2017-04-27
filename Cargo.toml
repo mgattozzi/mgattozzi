@@ -13,14 +13,14 @@ path = "src/lib.rs"
 
 [dependencies]
 # Rocket Server Deps
-rocket = "~0.1.0"
-rocket_codegen = "~0.1.0"
-rocket_contrib = "~0.1.0"
+rocket = "*"
+rocket_codegen = "*"
+rocket_contrib = "*"
 
 # JSON Deps
-serde = "*"
-serde_json = "*"
-serde_derive = "*"
+serde = "0.9"
+serde_json = "0.9"
+serde_derive = "0.9"
 
 # DB Deps
 diesel = { version = "~0.9.0", features = ["postgres"] }

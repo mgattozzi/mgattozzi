@@ -24,6 +24,7 @@ import {
   HyperClient,
   Pipers,
   RussianDolls,
+  RefactorRust,
   RustHaskell,
   RustIs,
   SchemeEx1,
@@ -60,6 +61,7 @@ render(
             <Route path="understanding-where-clauses" component={WhereClauses}/>
             <Route path="hyper-async" component={HyperAsync}/>
             <Route path="hyper-client" component={HyperClient}/>
+            <Route path="refactor-rust" component={RefactorRust}/>
           </Route>
         </Router>
       </div>

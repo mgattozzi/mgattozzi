@@ -52,6 +52,9 @@ class Archive extends React.Component {
             <li><Link to="/hyper-client">
                 Utilizing Asynchronous Hyper for Client Requests
             </Link></li>
+            <li><Link to="/refactor-rust">
+                Lessons learned redesigning and refactoring a Rust Library
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>

@@ -21,6 +21,7 @@ import rustIs from 'raw-loader!./posts/rust-is.md';
 import dieselRocket from 'raw-loader!./posts/diesel-powered-rocket.md';
 import hyperAsync from 'raw-loader!./posts/hyper-async.md';
 import hyperClient from 'raw-loader!./posts/hyper-client.md';
+import refactorRust from 'raw-loader!./posts/refactoring-rust.md';
 
 var md = new Remarkable({
   html: true,
@@ -144,6 +145,13 @@ export class HyperAsync extends React.Component {
 export class HyperClient extends React.Component {
   render () {
     const fileHtml = {__html: md.render(eval(hyperClient))};
+    return( <div dangerouslySetInnerHTML={fileHtml}></div>);
+  }
+}
+
+export class RefactorRust extends React.Component {
+  render () {
+    const fileHtml = {__html: md.render(eval(refactorRust))};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }
