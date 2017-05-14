@@ -1,5 +1,5 @@
 # Two Years of Rust
-Published May 9th, 2017
+Published May 14th, 2017
 
 Last year I published my [One Year of Rust](https://mgattozzi.com/1-year-of-rust)
 article to document how the community has changed, what I managed to accomplish
