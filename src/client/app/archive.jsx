@@ -55,6 +55,9 @@ class Archive extends React.Component {
             <li><Link to="/refactor-rust">
                 Lessons learned redesigning and refactoring a Rust Library
             </Link></li>
+            <li><Link to="/2-years-of-rust">
+              Reflecting on 2 years of Rust
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>

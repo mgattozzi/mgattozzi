@@ -22,6 +22,7 @@ import dieselRocket from 'raw-loader!./posts/diesel-powered-rocket.md';
 import hyperAsync from 'raw-loader!./posts/hyper-async.md';
 import hyperClient from 'raw-loader!./posts/hyper-client.md';
 import refactorRust from 'raw-loader!./posts/refactoring-rust.md';
+import twoYears from 'raw-loader!./posts/2-years-of-rust.md';
 
 var md = new Remarkable({
   html: true,
@@ -152,6 +153,13 @@ export class HyperClient extends React.Component {
 export class RefactorRust extends React.Component {
   render () {
     const fileHtml = {__html: md.render(eval(refactorRust))};
+    return( <div dangerouslySetInnerHTML={fileHtml}></div>);
+  }
+}
+
+export class TwoYears extends React.Component {
+  render () {
+    const fileHtml = {__html: md.render(eval(twoYears))};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }

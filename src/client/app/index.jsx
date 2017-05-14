@@ -31,6 +31,7 @@ import {
   SchemeInput,
   SchemeParser,
   SchrodingersBug,
+  TwoYears,
   WhereClauses,
 } from './posts.jsx';
 
@@ -50,6 +51,7 @@ render(
             <Route path="how-do-i-std-macros" component={StdMacros}/>
             <Route path="how-do-i-str-string" component={StrString}/>
             <Route path="1-year-of-rust" component={OneRust}/>
+            <Route path="2-years-of-rust" component={TwoYears}/>
             <Route path="pipers" component={Pipers}/>
             <Route path="russian-dolls" component={RussianDolls}/>
             <Route path="rust-haskell" component={RustHaskell}/>
