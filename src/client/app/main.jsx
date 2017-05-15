@@ -90,7 +90,7 @@ class Main extends React.Component {
                                   &nbsp;Resume
                         </Link></li>
                         <li><a className="glyphicon glyphicon-console"
-                               href="https:/github.com/mgattozzi">
+                               href="https://github.com/mgattozzi">
                                &nbsp;Github
                         </a></li>
                       </ul>
