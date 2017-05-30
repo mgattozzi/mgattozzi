@@ -23,6 +23,7 @@ import hyperAsync from 'raw-loader!./posts/hyper-async.md';
 import hyperClient from 'raw-loader!./posts/hyper-client.md';
 import refactorRust from 'raw-loader!./posts/refactoring-rust.md';
 import twoYears from 'raw-loader!./posts/2-years-of-rust.md';
+import globalUninit from 'raw-loader!./posts/global-uninitialized.md';
 
 var md = new Remarkable({
   html: true,
@@ -160,6 +161,13 @@ export class RefactorRust extends React.Component {
 export class TwoYears extends React.Component {
   render () {
     const fileHtml = {__html: md.render(eval(twoYears))};
+    return( <div dangerouslySetInnerHTML={fileHtml}></div>);
+  }
+}
+
+export class GlobalUninit extends React.Component {
+  render () {
+    const fileHtml = {__html: md.render(eval(globalUninit))};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }

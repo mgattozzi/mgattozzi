@@ -56,7 +56,10 @@ class Archive extends React.Component {
                 Lessons learned redesigning and refactoring a Rust Library
             </Link></li>
             <li><Link to="/2-years-of-rust">
-              Reflecting on 2 years of Rust
+                Reflecting on 2 years of Rust
+            </Link></li>
+            <li><Link to="/global-uninitialized">
+                Global Uninitialized Statics in Rust
             </Link></li>
           </ul>
         <h2>Schemers</h2>

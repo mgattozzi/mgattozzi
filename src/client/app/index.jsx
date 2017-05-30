@@ -16,6 +16,7 @@ import {
   Alchemist,
   BlogRust,
   DieselRocket,
+  GlobalUninit,
   HaskellRust,
   StdMacros,
   StrString,
@@ -64,6 +65,7 @@ render(
             <Route path="hyper-async" component={HyperAsync}/>
             <Route path="hyper-client" component={HyperClient}/>
             <Route path="refactor-rust" component={RefactorRust}/>
+            <Route path="global-uninitialized" component={GlobalUninit}/>
           </Route>
         </Router>
       </div>

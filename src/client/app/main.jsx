@@ -24,6 +24,7 @@ class Main extends React.Component {
           <div>
             Recent Articles
             <ul>
+              <li><Link to="/global-uninitialized">Global Uninitialized Statics in Rust</Link></li>
               <li><Link to="/2-years-of-rust">2 Years of Rust</Link></li>
               <li><Link to="/refactor-rust">Lessons learned redesigning and refactoring a Rust Library</Link></li>
               <li><Link to="/hyper-client">Using an Async Hyper Client</Link></li>
