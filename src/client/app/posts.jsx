@@ -24,6 +24,7 @@ import hyperClient from 'raw-loader!./posts/hyper-client.md';
 import refactorRust from 'raw-loader!./posts/refactoring-rust.md';
 import twoYears from 'raw-loader!./posts/2-years-of-rust.md';
 import globalUninit from 'raw-loader!./posts/global-uninitialized.md';
+import avoidingLogic from 'raw-loader!./posts/avoiding-logic-bugs.md';
 
 var md = new Remarkable({
   html: true,
@@ -168,6 +169,13 @@ export class TwoYears extends React.Component {
 export class GlobalUninit extends React.Component {
   render () {
     const fileHtml = {__html: md.render(eval(globalUninit))};
+    return( <div dangerouslySetInnerHTML={fileHtml}></div>);
+  }
+}
+
+export class AvoidingLogicErrors extends React.Component {
+  render () {
+    const fileHtml = {__html: md.render(eval(avoidingLogic))};
     return( <div dangerouslySetInnerHTML={fileHtml}></div>);
   }
 }

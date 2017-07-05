@@ -13,6 +13,7 @@ import Main from './main.jsx';
 import Resume from './resume.jsx';
 import Count from './count.jsx';
 import {
+  AvoidingLogicErrors,
   Alchemist,
   BlogRust,
   DieselRocket,
@@ -42,6 +43,8 @@ render(
           <Route path="/" component={Main}>
             <Route path="about" component={About}/>
             <Route path="archive" component={Archive}/>
+            <Route path="avoiding-logic-errors" component={AvoidingLogicErrors}/>
+            <Route path="global-uninitialized" component={GlobalUninit}/>
             <Route path="contact" component={Contact}/>
             <Route path="counting" component={Count}/>
             <Route path="diesel-powered-rocket" component={DieselRocket}/>

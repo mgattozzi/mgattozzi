@@ -61,6 +61,9 @@ class Archive extends React.Component {
             <li><Link to="/global-uninitialized">
                 Global Uninitialized Statics in Rust
             </Link></li>
+            <li><Link to="/avoiding-logic-errors">
+                Avoiding Logic Bugs in Rust with Traits and Types
+            </Link></li>
           </ul>
         <h2>Schemers</h2>
           <p>
