@@ -1,5 +1,5 @@
 # Avoiding Logic Bugs in Rust with Traits and Types
-Published July 13th, 2017
+Published July 14th, 2017
 
 The other day I saw someone comment how a bug could have been avoided if Rust
 was used. This was incorrect as it was a logic bug not a memory bug. Rust
