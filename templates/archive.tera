@@ -1,0 +1,114 @@
+{% extends "base" %}
+{% block content %}
+<div>
+  <h1>Archive</h1>
+    <p>
+      You'll find collections of articles I've written here that can be
+      grouped together by topic
+    </p>
+  <h2>Alchemist</h2>
+    <p>
+      Articles regarding my package name conversion tool.
+    </p>
+    <ul>
+      <li><a href="/announcing-alchemist">
+        Announcing Alchemist: v0.1.0
+      </a></li>
+    </ul>
+  <h2>Rust</h2>
+    <p>
+      Articles about various topics in Rust
+    </p>
+    <ul>
+      <li><a href="/blog-about-rust">
+        Why you should be blogging about Rust
+      </a></li>
+      <li><a href="/1-year-of-rust">
+        One year of Rust
+      </a></li>
+      <li><a href="/understanding-where-clauses">
+        Understanding where clauses and trait constraints
+      </a></li>
+      <li><a href="/russian-dolls">
+        Russian Dolls and clean Rust code
+      </a></li>
+      <li><a href="/pipers">
+        Announcing Pipers
+      </a></li>
+      <li><a href="/rust-is">
+        Rust is its community
+      </a></li>
+      <li><a href="/diesel-powered-rocket">
+        Diesel Powered Rocket
+      </a></li>
+      <li><a href="/hyper-async">
+          Building an Asynchronous Hyper Server
+      </a></li>
+      <li><a href="/hyper-client">
+          Utilizing Asynchronous Hyper for Client Requests
+      </a></li>
+      <li><a href="/refactor-rust">
+          Lessons learned redesigning and refactoring a Rust Library
+      </a></li>
+      <li><a href="/2-years-of-rust">
+          Reflecting on 2 years of Rust
+      </a></li>
+      <li><a href="/global-uninitialized">
+          Global Uninitialized Statics in Rust
+      </a></li>
+      <li><a href="/avoiding-logic-errors">
+          Avoiding Logic Bugs in Rust with Traits and Types
+      </a></li>
+    </ul>
+  <h2>Schemers</h2>
+    <p>
+      A series of articles aimed at new Rust users to learn the language
+      by writing a scheme interpreter. These are listed in order.
+    </p>
+    <ul>
+      <li><a href="/scheme-input">
+        Input
+      </a></li>
+      <li><a href="/scheme-ex1">
+        Exercise 1
+      </a></li>
+      <li><a href="/scheme-parser">
+        Parser 1
+      </a></li>
+    </ul>
+  <h2>Haskell and Rust</h2>
+    <p>
+      Articles doing FFI with Haskell and Rust
+    </p>
+    <ul>
+      <li><a href="/haskell-rust">
+        FFI with Haskell and Rust
+      </a></li>
+      <li><a href="/rust-haskell">
+        Using Haskell in Rust
+      </a></li>
+    </ul>
+  <h2>How do I X in Rust?</h2>
+    <p>
+      A collection of articles aimed at new Rust users to avoid growing pains
+      normally associated with learning the language.
+    </p>
+    <ul>
+      <li><a href="/how-do-i-str-string">
+        How do I convert a &amp;str to String in Rust?
+      </a></li>
+      <li><a href="/how-do-i-std-macros">
+        How do I use the Standard Library macros in Rust?
+      </a></li>
+    </ul>
+  <h2>JS</h2>
+    <p>
+      Articles regarding my usage of JavaScript.
+    </p>
+    <ul>
+      <li><a href="/schrodingers-bug">
+        Schrodinger's Bug: Adventures in Asynchronous Debugging
+      </a></li>
+    </ul>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "base" %}
+{% block content %}
+<div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Number of times the button has been clicked (Temporarily Disabled)
+    </div>
+    <div class="panel-body text-center">0</div>
+  </div>
+  <div>
+    <button class="btn btn-danger btn-lg center-block">
+      Click Me!
+    </button>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,122 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Barely Functional</title>
+
+  <!-- Scale Properly for devices -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Favicon Code -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/static/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/static/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/static/css/styles/github.min.css"></link>
+  <link rel="stylesheet" href="/static/css/base.css"></link>
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad()</script>
+</head>
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-top-data">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand">Barely Functional</a>
+      </div>
+      <div class="collapse navbar-collapse" id="nav-top-data">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/about">
+              {% if url == 1 %}
+                <div class="glyphicon glyphicon-user selected"></div>
+                <div class="nav-bar-text selected">
+              {% else %}
+                <div class="glyphicon glyphicon-user"></div>
+                <div class="nav-bar-text">
+              {% endif %}
+                  &nbsp;About
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/archive" active-class="active">
+              {% if url == 2 %}
+                <div class="glyphicon glyphicon-pencil selected"></div>
+                <div class="nav-bar-text selected">
+              {% else %}
+                <div class="glyphicon glyphicon-pencil"></div>
+                <div class="nav-bar-text">
+              {% endif %}
+                  &nbsp;Archive
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/contact" active-class="active">
+              {% if url == 3 %}
+                <div class="glyphicon glyphicon-envelope selected"></div>
+                <div class="nav-bar-text selected">
+              {% else %}
+                <div class="glyphicon glyphicon-envelope"></div>
+                <div class="nav-bar-text">
+              {% endif %}
+                      &nbsp;Contact
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/resume" active-class="active">
+              {% if url == 4 %}
+                <div class="glyphicon glyphicon-list selected"></div>
+                <div class="nav-bar-text selected">
+              {% else %}
+                <div class="glyphicon glyphicon-list"></div>
+                <div class="nav-bar-text">
+              {% endif %}
+                  &nbsp;Resume
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/mgattozzi">
+                <div class="glyphicon glyphicon-console"></div>
+                <div class="nav-bar-text">
+                  &nbsp;Github
+                </div>
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<body>
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+  </div>
+</body>

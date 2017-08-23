@@ -1,0 +1,36 @@
+{% extends "base" %}
+{% block content %}
+<div>
+  <p>
+    Thoughts and musings from a functional programmer who drinks too much coffee.
+  </p>
+  <p>
+    Welcome! This site contains a variety of things including how to get in
+    contact with me, my resume, who I am, as well as a articles I have written
+    regarding technical topics usually related to Rust or Haskell.
+  </p>
+  <p>
+    If you're a recruiter I'm currently not looking for a job right now, but
+    I encourage you to get in contact with me if I ever do decide I'm
+    looking for a new job.
+  </p>
+  <div>
+    Recent Articles
+    <ul>
+      <li><a href="/avoiding-logic-errors">Avoiding Logic Bugs in Rust with Traits and Types</a></li>
+      <li><a href="/global-uninitialized">Global Uninitialized Statics in Rust</a></li>
+      <li><a href="/2-years-of-rust">2 Years of Rust</a></li>
+      <li><a href="/refactor-rust">Lessons learned redesigning and refactoring a Rust Library</a></li>
+      <li><a href="/hyper-client">Using an Async Hyper Client</a></li>
+      <li><a href="/hyper-async">Building an Asynchronous Hyper Server</a></li>
+      <li><a href="/diesel-powered-rocket">Diesel Powered Rocket</a></li>
+      <li><a href="/rust-is">Rust is its community</a></li>
+      <li><a href="/pipers">Announcing Pipers</a></li>
+      <li><a href="/scheme-parser">Schemers - Parser 1</a></li>
+      <li><a href="/russian-dolls">Russian Dolls and clean Rust code</a></li>
+      <li><a href="/scheme-ex1">Schemers - Exercise 1</a></li>
+      <li><a href="/scheme-input">Schemers - Input</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock content %}
