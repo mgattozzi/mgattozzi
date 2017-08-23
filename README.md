@@ -2,10 +2,8 @@ My Personal Blog written with Rust!
 
 To get it running:
 
-1. `yarn install`
-2. `NODE_ENV=production webpack -p --config webpack.production.config.js`
-3. `cargo run --release`
-4. Navigate to the address that pops up
+1. `cargo run --release`
+2. Navigate to the address that pops up
 
 Legal Notes:
 
