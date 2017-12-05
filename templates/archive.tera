@@ -59,6 +59,9 @@
       <li><a href="/avoiding-logic-errors">
           Avoiding Logic Bugs in Rust with Traits and Types
       </a></li>
+      <li><a href="/rust-wasm">
+          Rust and the case for WebAssembly in 2018
+      </a></li>
     </ul>
   <h2>Schemers</h2>
     <p>

@@ -9,7 +9,10 @@ a JVM available). JavaScript changed how the web worked and went from something
 to help manipulate how web pages looked based off user interaction, to its
 modern incarnation of full applications that run in the browser.
 
-[![xkcd comic number 1367 describing that web pages are apps now too][xkcd]](https://xkcd.com/1367/)
+[<img class="center-block img-responsive"
+     src="https://imgs.xkcd.com/comics/installing.png"
+     alt="xkcd comic number 1367 describing that web pages are apps now
+     too">][xkcd]
 
 I think we're at that next technology now and it's staring us in the face, but
 because it hasn't been used beyond hobbyist level interaction, it's kind of hard
@@ -43,9 +46,9 @@ Alright, so why is it a big deal?
    everywhere on the web, its semantics limits how fast it can be
    (that being said, the JIT compiling in browsers these days is usually good enough).
 
-It has the best parts of what made Java applets popular back in the day (portability) and made
-JavaScript (open standard and browser support) as the king of the Web and established them as
-languages of choice, but with all the speed of C, C++, and Rust.
+It has the best parts of what made Java applets popular back in the early days of the web
+(portability of code) and it has what made JavaScript the king of the Web (an open standard and
+browser support), but with all of the native speed of C, C++, and Rust.
 
 ## What does this mean for Rust?
 
@@ -93,7 +96,7 @@ overhead, would have to be shipped with each wasm package, and at that point you
 might as well just use JS which is also GC based but is highly optimized for the
 web. This is of course subject to change when WebAssembly gets integration with
 the GC of the surrounding environment, e.g. the JavaScript engine. However, this
-is something that won't happen for about 2 years give or take.
+is something that won't happen for about two years give or take.
 
 This leaves us with Rust, C, or C++ as the only real contenders for using wasm
 at the moment, meaning it's ripe for first mover advantage when it comes to
@@ -273,7 +276,10 @@ future, this is it, and the sooner we get to making wasm a first class citizen
 in Rust and for web tooling the better off we'll be when wasm stops being
 something that a few people are working on and becomes the web.
 
-[xkcd]: https://imgs.xkcd.com/comics/installing.png
+Thanks to [killercup][kc], [badboy][bb], [steveklabnik][sb], [myrrlyn][m], and
+[ManishEarth][ms] for offering improvements, corrections, and editing.
+
+[xkcd]: https://xkcd.com/1367/
 [moe_moe_kyun]: http://make.girls.moe/#/
 [godot]: https://twitter.com/reduzio/status/929330105050189824
 [wasm_gc]: https://github.com/alexcrichton/wasm-gc
@@ -282,3 +288,8 @@ something that a few people are working on and becomes the web.
 [loader]: https://www.npmjs.com/package/rust-wasm-loader
 [wasm_backend]: https://github.com/rust-lang/rust/pull/45905
 [RLS]: https://github.com/rust-lang-nursery/rls
+[kc]: https://twitter.com/killercup
+[bb]: https://twitter.com/badboy_
+[sb]: https://twitter.com/steveklabnik
+[m]: https://twitter.com/myrrlyn
+[ms]: https://twitter.com/ManishEarth
