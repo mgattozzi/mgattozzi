@@ -1,15 +1,15 @@
-# Rust and the case for Web Assembly in 2018
+# Rust and the case for WebAssembly in 2018
 
-Published November 16th, 2017
+Published December 5th, 2017
 
 Every now and then a technology comes around that fundamentally changes the game
 and how things work. Java and the JVM created a world where the idea of portable
-code execution was possible, "compile once run anywhere" (as long as there was
+code execution was possible, "compile once, run anywhere" (as long as there was
 a JVM available). JavaScript changed how the web worked and went from something
 to help manipulate how web pages looked based off user interaction, to its
 modern incarnation of full applications that run in the browser.
 
-![xkcd comic number 1367 describing that web pages are apps now too][xkcd]
+[![xkcd comic number 1367 describing that web pages are apps now too][xkcd]](https://xkcd.com/1367/)
 
 I think we're at that next technology now and it's staring us in the face, but
 because it hasn't been used beyond hobbyist level interaction, it's kind of hard
@@ -20,12 +20,12 @@ that's been seen before and it's going to change everything.
 ## What is wasm?
 
 If you haven't heard of it wasm is a binary format to run programs at native
-speeds in the browser. What? "That's crazy" you might say, well here's an example
+speed in the browser. What? "That's ridiculous" you might say, well here's an example
 of it [being used for a neural network to generate anime faces][moe_moe_kyun].
 The code for that isn't written in JavaScript. Now while that may not be your
 cup of tea you might be interested in the fact that someone put the
 [Godot Game Engine][godot] into the browser. This is all early days kind of stuff
-with wasm but it highlights an important things: Wasm is powerful, wasm is fast enough,
+with wasm, but it highlights some important things: wasm is powerful, wasm is fast enough,
 and soon we will be able to run any application on a single platform; the web.
 
 This is a *big* deal. Just the other day
@@ -40,18 +40,17 @@ Alright, so why is it a big deal?
    as long as it has a web browser.
 3. It's an open standard, so no one company owns it (like Oracle does with Java).
 4. It's fast. While JavaScript is great due to it's ubiquity and working
-   everywhere on the web, it's interpreted so it has it's limits with how fast
-   it can be (that being said, the JIT compiling in browsers these days is usually
-   good enough).
+   everywhere on the web, its semantics limits how fast it can be
+   (that being said, the JIT compiling in browsers these days is usually good enough).
 
-It's got the best parts of what made Java and Javascript the kings of the Web
-and established them as languages of choice, but all the speed of C/C++/Rust
-possibly.
+It has the best parts of what made Java applets popular back in the day (portability) and made
+JavaScript (open standard and browser support) as the king of the Web and established them as
+languages of choice, but with all the speed of C, C++, and Rust.
 
 ## What does this mean for Rust?
 
 We're poised to be *THE* language of choice for wasm. While C/C++ can be used, they
-have many things that can push Web Developers away from using them. Things that Rust
+have many things that can push web developers away from using them. Things that Rust
 doesn't suffer from, mainly:
 
 1. Packaging libraries is a huge pain
@@ -64,12 +63,12 @@ doesn't suffer from, mainly:
 Sounds kind of like what we already say to convince people to use Rust who do
 systems programming to use Rust. Except, this time our target demographic is different.
 It's not systems programmers, it's web developers. Generally speaking here's
-what Web Developers want and need:
+what web developers want and need:
 
 1. Easy packaging of libraries
 2. Being able to just download a package and use it
 3. Being able to call and use those libraries easily with good documentation
-4. Easy integration into a build system like Webpack
+4. Easy integration into a build system like webpack or browserify
 
 We have most of these:
 
@@ -78,23 +77,27 @@ We have most of these:
 2. We also can again use cargo, but we need to integrate with npm somehow which
    I'll talk about later
 3. Rustdoc is a wonderful tool and much easier to go through than a man page
-4. I don't think we're here yet but I'll cover it later
+4. I don't think we're here just yet but I'll cover it later
 
-We have a lot of what Web Developers want and can easily make the push to make
+We have a lot of what web developers want and can easily make the push to make
 it a seamless experience for them, rather than making the mistake of letting
-C/C++ become the go-to choice again. Rust can and should become the Systems
-Language of the web, much like C/C++ have been for personal computers for decades.
+C/C++ become the go-to choice again. Rust can and should become the systems
+language of the web, much like C/C++ have been for personal computers for decades.
 
 You might have noticed I haven't mentioned programming languages like
 Ruby/Python/Java etc. here, that also cover the same things as Rust (and are arguably
 easier to learn) right now in terms of making it a good language for wasm. This
-is because they're all dependent on a Gargbage Collector. If the point of wasm is
+is because they're all dependent on a Garbage Collector. If the point of wasm is
 to be fast, then having no runtime to worry about is a good thing. GCs add extra
 overhead, would have to be shipped with each wasm package, and at that point you
 might as well just use JS which is also GC based but is highly optimized for the
-web.
+web. This is of course subject to change when WebAssembly gets integration with
+the GC of the surrounding environment, e.g. the JavaScript engine. However, this
+is something that won't happen for about 2 years give or take.
 
-This leaves us with Rust, C, or C++ as the only real contenders for using wasm.
+This leaves us with Rust, C, or C++ as the only real contenders for using wasm
+at the moment, meaning it's ripe for first mover advantage when it comes to
+tooling, support, and use.
 
 ## How do we make it the language of choice?
 
@@ -102,7 +105,7 @@ While I've given up trying to convince die-hard C/C++ people to use Rust when
 they can (there are arguments not too, i.e. large code bases like Linux) as the
 default, what we can do is convince a whole new generation of programmers to use
 Rust. Lots of people are learning to code right now, especially for the first
-time, and many of them are learning JS as their first language. Undoubtably as
+time, and many of them are learning JS as their first language. Undoubtedly as
 the years go on and wasm becomes more of a thing, because it will be, they will
 come into contact with it and try it out or have to learn it. We want to
 position Rust for that critical confluence of events that will occur which is:
@@ -126,15 +129,13 @@ computing.
 There's two important hurdles we need to clear short term and that's tooling and
 compiling Rust to wasm. I'll cover compilation first.
 
-Right now we can compile to wasm but that means you need emscripten.
-I don't know if you've tried to set that up before but it's not as nice as "just use
-`rustup`". We now require two different tools to make a wasm module and that
-doesn't seem like a good idea at all. The first priority from the compiler side
-should be getting a wasm backend built out and working well. Well, the good news
-is that there is a [wasm backend][wasm_backend] target getting added. We're
-already on our way there. Future work over the next year would be making sure it
-works with `std` if it doesn't already, as well as optimizations, and making sure
-it produces wasm files that work.
+Right now we can compile to wasm with a [wasm backend][wasm_backend] target available now in
+nightly. However, we don't have linker support so the binary sizes are large and
+we have to use [wasm-gc][wasm_gc] to optimize and clean up the program. LLVM has
+landed wasm linker support though so we're already on our way there for compilation to wasm.
+Future work over the next year would be making sure it works with most if not all of `std` if it
+doesn't already (threads aren't supported in the wasm standard yet but will be), as well as
+optimizations, and making sure it produces wasm files that work.
 
 Next up is getting the tooling working. This includes three major tools:
 
@@ -142,25 +143,25 @@ Next up is getting the tooling working. This includes three major tools:
 2. webpack
 3. NPM
 
-Improving the RLS is going to be critical. I barely know web developers who code using
-vim or emacs. They generally use VS Code, Atom, Sublime Text, and others that are more
-graphical or are an IDE. They're used because the tooling is good for it. We also know
-of people who won't use Rust till there's an IDE available anyways, so continuing this work is
-important for both getting the Web Developer demographic as well as getting others
-who wouldn't use Rust without an IDE. Two birds with one stone! Most of this is
-already underway, but having a usable stable version in 2018 that we can
-continue to improve will be a big boon. As an addendum to that making it easy to
-integrate the RLS with other editors should be a snap as well. Making things
-easier for end users is always a good thing for adoption, even if it means we
-need to do a bit of extra maintenance to keep it working.
+Improving the RLS is going to be critical. Many web developers use editors such as VS Code, Atom,
+Sublime Text, and others that are more graphical or are an IDE. There are of course vim/emacs users
+as well! The RLS being improved benefits all of these platforms, but especially those who use an
+IDE and it's features extensively. We also know of people who won't use Rust until there's an IDE
+available anyways, so continuing this work is important for both getting the web developer
+demographic as well as getting others who wouldn't use Rust without an IDE. Two birds with one
+stone! Most of this is already underway, but having a usable stable version in 2018 that we can
+continue to improve will be a big boon. As an addendum to that making it easy to integrate the RLS
+with other editors should be a snap as well. Making things easier for end users is always a good
+thing for adoption, even if it means we need to do a bit of extra maintenance to keep it working.
+Big props to the people working on the RLS already. It's important work!
 
 Next up we need to get integration with webpack working and from what I've seen
-it's something that's [in progress][webpack]! Being able to drop in files and have
-it Just Work™ is going to be important. Webpack has become the cargo for the web in
-many ways, so being able to just hook in to that build system with no effort for people
-developing their own modules is essential. I really think tooling is a huge driver of
-adoption. I know I would hate using Rust without rustup or cargo even if I did
-like the language.
+it's something that's [been experimentally added][webpack], with a loader already on [NPM][loader]!
+Being able to drop in files and have it Just Work™ is going to be important. Webpack has become
+the cargo for the web in many ways, so being able to just hook in to that build system with no
+effort for people developing their own modules is essential. I really think tooling is a huge
+driver of adoption. I know I would hate using Rust without rustup or cargo even if I did like the
+language.
 
 Lastly, NPM is the next big piece. What if someone writes a whole module in web assembly?
 Where should they distribute it? While crates.io is great for other Rust modules it's
@@ -169,7 +170,7 @@ development gets their modules from. Where am I going with this? Well the good t
 wasm is that it's platform-agnostic so we could compile a module to wasm and then upload
 it to NPM to then be installed alongside other modules used for development. Being
 able to do something like `cargo upload --npm` would be great. It'll let us use
-Rust tooling locally, but still allow us to hook into the wider Web Development ecosystem.
+Rust tooling locally, but still allow us to hook into the wider web development ecosystem.
 
 With webpack and NPM we'll need to work with the projects' maintainers but they also
 either use Rust or already want it in their project so I'm sure it'll be easy to get help
@@ -200,7 +201,7 @@ goals of the community now, grow it, make it easy to use and join, and increase 
 I think the important thing here is that by getting more people to use wasm we'll have a new
 generation of systems programmers who will reach for Rust as their first choice. Maybe even
 then we can have a full Rust Stack equivalent to MEAN. I'm thinking maybe something like WARD
-(Web Assembly, Rocket, Diesel) but hey that's a far off dream. Still, longterm the goals will
+(WebAssembly, Rocket, Diesel) but hey that's a far off dream. Still, longterm the goals will
 help grow Rust, and enable users to do more cool things whether on the web, in embedded dev,
 or something else.
 
@@ -228,7 +229,7 @@ this article. I think it also coincides with what we've already been working on
 already in 2017 as well. The ergonomics initiative can still be brought forward
 into 2018 (NLL, ATCs, Incremental Compilation, and other nice things) because
 making the language even friendlier and powerful is a good thing that still
-benefits everyone, but also will benefit us by getting more Web Developers on
+benefits everyone, but also will benefit us by getting more web developers on
 boarded to Rust. While some things will directly benefit the wasm-only portion,
 i.e. code generation/optimization, which will consume limited compiler team
 resources, the longterm benefits far outweigh the initial cost.
@@ -247,8 +248,8 @@ More concretely as goals for 2018 I think Rust should focus on the following:
 2. Continued work on ergonomics such as NLL and others
 3. Continued work on RLS and integrating it into other IDEs/Text Editors easily
 4. Generate more documentation for beginners/improve current documentation
-5. Work on Webpack integration
-6. Work on npm integration
+5. Work on webpack integration
+6. Work on NPM integration
 
 I think this is a good goal; one that's ambitious, but would have a huge impact,
 that also builds on existing work, rather than throwing everything we have been
@@ -275,7 +276,9 @@ something that a few people are working on and becomes the web.
 [xkcd]: https://imgs.xkcd.com/comics/installing.png
 [moe_moe_kyun]: http://make.girls.moe/#/
 [godot]: https://twitter.com/reduzio/status/929330105050189824
+[wasm_gc]: https://github.com/alexcrichton/wasm-gc
 [wasm_browser]: https://blog.mozilla.org/blog/2017/11/13/webassembly-in-browsers/
-[webpack]: https://twitter.com/slsoftworks/status/930457337109843969
+[webpack]: https://github.com/webpack/webpack/pull/5945
+[loader]: https://www.npmjs.com/package/rust-wasm-loader
 [wasm_backend]: https://github.com/rust-lang/rust/pull/45905
 [RLS]: https://github.com/rust-lang-nursery/rls
