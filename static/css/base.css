@@ -31,12 +31,13 @@ blockquote p {
 
 .content {
   font-family: Georgia, Serif;
-  line-height: 1.5;
+  line-height 1.5;
   hyphens: auto;
   webkit-hyphens: auto;
   font-size: 16px;
   max-width: 44em;
   margin: 0 auto;
+  padding: 0 1em;
 }
 
 .pgp {
