@@ -7,9 +7,9 @@
         style="max-width: 500px; width: 100%; height: auto">
   </img>
   <p>
-    My name is Michael Gattozzi. I'm finishing up my CS Undergrad at Umass Boston
-    this year. I work at a Financial Tech Startup called Elsen, Inc. where I get to write
-    Haskell in production! In my spare time I write a lot Rust code and
+    My name is Michael Gattozzi. I recieved a B.S. of CS at Umass Boston in May 2017.
+    I work at a Financial Tech Startup called Elsen, Inc. where I get to write
+    Haskell and Rust in production! In my spare time I write a lot Rust code and
     lately I've been bridging the gap between the two languages. I also have the
     pleasure of serving in the MA National Guard where I get to work on
     radios and computers in the S6 of the Battalion I work at.
@@ -26,18 +26,13 @@
     <ul>
       <li>Rust</li>
       <li>Haskell</li>
-      <li>Machine Learning</li>
-      <li>Fin Tech</li>
-      <li>Metasploit</li>
-      <li>Block Chain Technology</li>
     </ul>
   </div>
   <p>
     When I'm not working on code I enjoy looking for new delicious coffee
     places in Boston, catching up on newer TV and Anime shows as well as
-    playing newer video games when I get the chance (the current ones being
-    The Witcher 3 and Civilization 6). I also enjoy taking photographs in my
-    spare time and particularly enjoy macro photography.
+    playing newer video games when I get the chance.I also enjoy taking photographs
+    in my spare time and particularly enjoy macro photography.
   </p>
   <p>
     Here's an example of one from my trip to Europe during the summer of 2015:
