@@ -113,5 +113,14 @@
         Schrodinger's Bug: Adventures in Asynchronous Debugging
       </a></li>
     </ul>
+  <h2>Personal</h2>
+    <p>
+      Articles regarding my personal life that aren't necessary technical in nature.
+    </p>
+    <ul>
+      <li><a href="/2017-retrospective">
+        2017 Retrospective and 2018 Resolutions
+      </a></li>
+    </ul>
 </div>
 {% endblock content %}
