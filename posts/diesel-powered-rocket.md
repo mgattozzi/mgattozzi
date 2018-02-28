@@ -1,5 +1,5 @@
 # Diesel Powered Rocket
-Published Jan 9, 2017
+Published January 9, 2017
 
 This holiday season I had decided to rewrite this website (again) to use
 Rocket, a new Rust web framework. I had also

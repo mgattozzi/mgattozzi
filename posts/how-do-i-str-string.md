@@ -1,5 +1,5 @@
 # How do I convert a &str to a String in Rust?
-<div class="subtitle">Published May 24th, 2016</div>
+Published May 24th, 2016
 
 This is the first in a whole series of blog posts to answer the simple
 question "How do I X in Rust?" Many times as a user coming into the

@@ -1,5 +1,5 @@
 # Announcing Pipers - A small library for piping commands
-<div class="subtitle">Published December 23, 2016</div>
+Published December 23, 2016
 
 Back when I first started using Rust during 1.0 I had set about to learn
 it by writing a shell program. While the code itself is really not

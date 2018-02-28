@@ -1,5 +1,5 @@
 # FFI with Haskell and Rust
-<div class="subtitle">Published October 1st, 2016</div>
+Published October 1st, 2016
 
 I've had an idea percolating for a while. I love using Haskell for work.
 It's functional, expressive, and easy to reason about. It's also

@@ -1,5 +1,5 @@
 # Schrodinger's Bug: Adventures in Asynchronous Debugging
-<div class="subtitle">Published March 20th, 2016</div>
+Published March 20th, 2016
 
 Lately I've been writing integration tests for [Elsen](https://elsen.co)
 using node.js to verify our Haskell backend is indeed returning to us

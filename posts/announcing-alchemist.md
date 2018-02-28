@@ -1,5 +1,5 @@
 # Announcing Alchemist
-<div class="subtitle">Published May 5th, 2016</div>
+Published May 5th, 2016
 
 I've been working on a small project for a while now and it's with great
 pleasure that I get to announce it now that I have a proof of concept.

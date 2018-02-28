@@ -1,5 +1,5 @@
 # How do I use the Standard Library Macros in Rust? Part 1
-<div class="subtitle">Published June 1st, 2016</div>
+Published June 1st, 2016
 
 This is the second post in a series of blog posts dedicated to answering
 the simple question "How do I X in Rust?" After last week's post

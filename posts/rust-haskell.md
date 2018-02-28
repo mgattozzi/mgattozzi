@@ -1,5 +1,5 @@
 # Using Haskell in Rust
-<div class="subtitle">Published October 15th, 2016</div>
+Published October 15th, 2016
 
 After my article on putting [Rust in Haskell](/haskell-rust) I
 set out on getting Haskell into Rust as part of my test suite for

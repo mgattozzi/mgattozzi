@@ -1,5 +1,5 @@
 # Schemers - Input
-<div class="subtitle">Published November 15th, 2016</div>
+Published November 9th, 2016
 
 In my CS undergrad right now I've been taking an interesting course on the
 *Structure of Higher Level Languages*. It's quite the eye opening class

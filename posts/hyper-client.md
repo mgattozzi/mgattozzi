@@ -1,5 +1,4 @@
 # Using an Async Hyper Client
-
 Published March 9th, 2017
 
 Lately I've been revamping my [GitHub

@@ -1,5 +1,5 @@
 # Why you should be blogging about Rust
-<div class="subtitle">Published September 27th, 2016</div>
+Published September 27th, 2016
 
 Let's jump right into it, I'm here to convince you to start blogging
 about Rust if you haven't and if you have to continue to do so, and

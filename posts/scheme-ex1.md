@@ -1,5 +1,5 @@
 # Schemers - Exercise 1
-<div class="subtitle">Published November 9th, 2016</div>
+Published November 15th, 2016
 
 This post will be covering the exercises given in the first article.
 I'll be going over the answers and providing more idiomatic ways to do

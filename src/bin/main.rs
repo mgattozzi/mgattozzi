@@ -2,80 +2,85 @@
 #![plugin(rocket_codegen)]
 
 #[macro_use] extern crate serde_derive;
-#[macro_use] extern crate lazy_static;
+
+// #[macro_use] extern crate lazy_static;
+// extern crate diesel;
+// extern crate r2d2;
+// extern crate r2d2_diesel;
+// extern crate mlib;
+
 extern crate comrak;
-extern crate diesel;
 extern crate rocket;
 extern crate rocket_contrib;
-extern crate r2d2;
-extern crate r2d2_diesel;
-extern crate mlib;
 extern crate serde_json;
 extern crate tera;
 
 use comrak::{ markdown_to_html, ComrakOptions };
-// Server Imports
-// Used to Setup DB Pool
-use rocket::request::{ Outcome, FromRequest };
-use rocket::Outcome::{ Success, Failure };
-use rocket::http::Status;
+
+// // Server Imports
+// // Used to Setup DB Pool
+// use rocket::request::{ Outcome, FromRequest };
+// use rocket::Outcome::{ Success, Failure };
+// use rocket::http::Status;
+// use rocket::Request;
+// use rocket_contrib::Json;
 
 // Used for Routes
-use rocket::Request;
 use rocket::response::NamedFile;
-use rocket_contrib::{ Template, Json };
+use rocket_contrib::Template;
 
 // Std Imports
 use std::path::{ Path, PathBuf };
 use std::io::{ BufReader, Read };
 
-// DB Imports
-use diesel::prelude::*;
-use diesel::update;
-use diesel::pg::PgConnection;
-use r2d2::{ Pool, PooledConnection, GetTimeout };
-use r2d2_diesel::ConnectionManager;
-use mlib::models::*;
-use mlib::*;
+// // DB Imports
+// use diesel::prelude::*;
+// use diesel::update;
+// use diesel::pg::PgConnection;
+// use r2d2::{ Pool, PooledConnection, GetTimeout };
+// use r2d2_diesel::ConnectionManager;
+// use mlib::models::*;
+// use mlib::*;
 
 fn main() {
     // Put site last so that path collision tries others
     // first
     rocket::ignite()
         .mount("/", routes![
-            count,
-            count_update,
+            //count,
+            //count_update,
             keybase,
             static_files,
             index,
+            rss,
             posts
         ])
         .attach(Template::fairing())
         .launch();
 }
 
-// DB Items
-lazy_static! {
-    pub static ref DB_POOL: Pool<ConnectionManager<PgConnection>> = create_db_pool();
-}
+// // DB Items
+// lazy_static! {
+//     pub static ref DB_POOL: Pool<ConnectionManager<PgConnection>> = create_db_pool();
+// }
 
-pub struct DB(PooledConnection<ConnectionManager<PgConnection>>);
+// pub struct DB(PooledConnection<ConnectionManager<PgConnection>>);
 
-impl DB {
-    pub fn conn(&self) -> &PgConnection {
-        &*self.0
-    }
-}
+// impl DB {
+//     pub fn conn(&self) -> &PgConnection {
+//         &*self.0
+//     }
+// }
 
-impl<'a, 'r> FromRequest<'a, 'r> for DB {
-    type Error = GetTimeout;
-    fn from_request(_: &'a Request<'r>) -> Outcome<Self, Self::Error> {
-        match DB_POOL.get() {
-            Ok(conn) => Success(DB(conn)),
-            Err(e) => Failure((Status::InternalServerError, e)),
-        }
-    }
-}
+// impl<'a, 'r> FromRequest<'a, 'r> for DB {
+//     type Error = GetTimeout;
+//     fn from_request(_: &'a Request<'r>) -> Outcome<Self, Self::Error> {
+//         match DB_POOL.get() {
+//             Ok(conn) => Success(DB(conn)),
+//             Err(e) => Failure((Status::InternalServerError, e)),
+//         }
+//     }
+// }
 
 // Routes
 #[get("/static/<file..>", rank=1)]
@@ -122,38 +127,40 @@ fn keybase() -> Option<NamedFile> {
     NamedFile::open("keybase.txt").ok()
 }
 
+#[get("/rss.xml")]
+fn rss() -> Option<NamedFile> {
+    NamedFile::open("rss.xml").ok()
+}
+
 #[get("/")]
 fn index() -> Option<Template> {
     Some(Template::render("index", Nav::new(0)))
 }
 
-#[get("/count")]
-fn count(db: DB) -> Json<Clicks> {
-    use mlib::schema::counts::dsl::*;
-    let result = counts.first::<Count>(db.conn())
-        .expect("Error loading clicks");
+// #[get("/count")]
+// fn count(db: DB) -> Json<Clicks> {
+//     use mlib::schema::counts::dsl::*;
+//     let result = counts.first::<Count>(db.conn())
+//         .expect("Error loading clicks");
+//     Json(Clicks {
+//         count: result.clicks,
+//     })
+// }
 
-    Json(Clicks {
-        count: result.clicks,
-    })
-}
-
-#[put("/count")]
-fn count_update(db: DB) -> Json<Clicks> {
-    use mlib::schema::counts::dsl::*;
-    let query = counts.first::<Count>(db.conn())
-        .expect("Error loading clicks");
-    let val = query.clicks + 1;
-
-    update(counts.find(1))
-        .set(clicks.eq(val))
-        .execute(db.conn())
-        .unwrap();
-
-    Json(Clicks {
-        count: val,
-    })
-}
+// #[put("/count")]
+// fn count_update(db: DB) -> Json<Clicks> {
+//     use mlib::schema::counts::dsl::*;
+//     let query = counts.first::<Count>(db.conn())
+//         .expect("Error loading clicks");
+//     let val = query.clicks + 1;
+//     update(counts.find(1))
+//         .set(clicks.eq(val))
+//         .execute(db.conn())
+//         .unwrap();
+//     Json(Clicks {
+//         count: val,
+//     })
+// }
 
 #[derive(Deserialize, Serialize)]
 pub struct Nav {

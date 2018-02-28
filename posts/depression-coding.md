@@ -1,5 +1,5 @@
 # On Coding with Depression
-Published on Jan 12th, 2018
+Published on January 12th, 2018
 
 I talk about a lot of technical things on this site, but today I want to touch
 on some things that aren't technical in nature, but affects the quality of that

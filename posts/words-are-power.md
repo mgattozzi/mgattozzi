@@ -1,5 +1,5 @@
 # Words are Power: Writing Authoritative Documentation
-Published Feb 8th, 2017
+Published Feb 8th, 2018
 
 One of the hardest problems in both Closed and Open Source Software is
 documentation. How do we convey what the software does? How do we keep it up to

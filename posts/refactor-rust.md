@@ -1,5 +1,4 @@
 # Lessons learned redesigning and refactoring a Rust Library
-
 Published April 27, 2017
 
 Recently I've completely rewritten my

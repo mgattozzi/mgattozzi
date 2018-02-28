@@ -1,5 +1,5 @@
 # Schemers - Parsers
-<div class="subtitle">Published December 16th, 2016</div>
+Published December 16th, 2016
 
 Ready for the next lesson? We'll be writing our parser now, the Read in
 the REPL. We'll be using the `nom` library for parsing. It's what's

@@ -1,5 +1,4 @@
 # Building an Asynchronous Hyper Server
-
 Published January 26th, 2017
 
 Recently I started working on a GitHub bot similar to Bors in my spare

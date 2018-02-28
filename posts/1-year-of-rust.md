@@ -1,5 +1,5 @@
 # One Year of Rust
-<div class="subtitle">Published August 8th, 2016</div>
+Published August 8th, 2016
 
 I've been using Rust since 1.0 launched. I had heard of it before 1.0
 but didn't pay much attention to it and spent some time flirting with

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Barely Functional - mgattozzi</title>
+    <link>https://mgattozzi.com</link>
+    <description>
+      Thoughts and musings from a functional programmer who drinks too much coffee.
+    </description>
+    <item>
+      <title>Schrodinger's Bug: Adventures in Asynchronous Debugging</title>
+      <link>https://mgattozzi.com/schrodingers-bug</link>
+      <description>
+        Published March 20th, 2016
+        A look at dealing with errors in JS all due to not using promises correctly
+      </description>
+      <guid>https://mgattozzi.com/schrodingers-bug</guid>
+    </item>
+    <item>
+      <title>Announcing Alchemist</title>
+      <link>https://mgattozzi.com/announcing-alchemist</link>
+      <description>
+        Published May 5th, 2016
+        Alchemist was a small side project to make dealing with package name differences between
+        distributions a lot easier. It would wrap around your platform's package manager seamlessly.
+      </description>
+      <guid>https://mgattozzi.com/announcing-alchemist</guid>
+    </item>
+    <item>
+      <title>How do I convert a &amp;str to a String in Rust?</title>
+      <link>https://mgattozzi.com/how-do-i-str-string</link>
+      <description>
+        Published May 24th, 2016
+        Okay so we have &amp;str
+      </description>
+      <guid>https://mgattozzi.com/how-do-i-str-string</guid>
+    </item>
+    <item>
+      <title>How do I use the Standard Library Macros in Rust? Part 1</title>
+      <link>https://mgattozzi.com/how-do-i-std-macro</link>
+      <description>
+        Published June 1st, 2016
+        There are a lot of stdlib macros. Just how do you use them and what are they used for?
+      </description>
+      <guid>https://mgattozzi.com/how-do-i-std-macro</guid>
+    </item>
+    <item>
+      <title>One Year of Rust</title>
+      <link>https://mgattozzi.com/1-year-of-rust</link>
+      <description>
+        Published August 8th, 2016
+        A look at my first year with Rust and a little over a year since 1.0 came out.
+      </description>
+      <guid>https://mgattozzi.com/1-year-of-rust</guid>
+    </item>
+    <item>
+      <title>Understanding where clauses and trait constraints</title>
+      <link>https://mgattozzi.com/understanding-where-clauses</link>
+      <description>
+        Published September 13th, 2016
+        Traits constrain what generic types you can use, but they can also be powerful. Here we
+        cover their uses and how they can be used.
+      </description>
+      <guid>https://mgattozzi.com/understanding-where-clauses</guid>
+    </item>
+    <item>
+      <title>Why you should be blogging about Rust</title>
+      <link>https://mgattozzi.com/blog-about-rust</link>
+      <description>
+        Published September 27th, 2016
+        Reasons to start a blog but with a Rust focus.
+      </description>
+      <guid>https://mgattozzi.com/blog-about-rust</guid>
+    </item>
+    <item>
+      <title>FFI with Haskell and Rust</title>
+      <link>https://mgattozzi.com/haskell-rust</link>
+      <description>
+        Published October 1st, 2016
+        What if we put Rust code inside of Haskell? Here's how.
+      </description>
+      <guid>https://mgattozzi.com/haskell-rust</guid>
+    </item>
+    <item>
+      <title>Using Haskell in Rust</title>
+      <link>https://mgattozzi.com/rust-haskell</link>
+      <description>
+        Published October 15th, 2016
+        You can put Rust in Haskell, but can we do it the other way around? Yes. Yes we can.
+      </description>
+      <guid>https://mgattozzi.com/rust-haskell</guid>
+    </item>
+    <item>
+      <title>Schemers - Input</title>
+      <link>https://mgattozzi.com/scheme-input</link>
+      <description>
+        Published November 9th, 2016
+        The first installation of my scheme interpreter course. Let's grab some input!
+      </description>
+      <guid>https://mgattozzi.com/scheme-input</guid>
+    </item>
+    <item>
+      <title>Schemers - Exercise 1</title>
+      <link>https://mgattozzi.com/scheme-ex1</link>
+      <description>
+        Published November 15th, 2016
+        The second installation of my scheme interpreter course. Let's go over the answers of
+        exercise 1!
+      </description>
+      <guid>https://mgattozzi.com/scheme-ex1</guid>
+    </item>
+    <item>
+      <title>Russian Dolls and clean Rust code</title>
+      <link>https://mgattozzi.com/russian-dolls</link>
+      <description>
+        Published November 28th, 2016
+        How to deal with nasty if let chains for Option or Result types using combinators!
+      </description>
+      <guid>https://mgattozzi.com/russian-dolls</guid>
+    </item>
+    <item>
+      <title>Announcing Pipers - A small library for piping commands</title>
+      <link>https://mgattozzi.com/pipers</link>
+      <description>
+        Published December 23, 2016
+        A small announcement post for a library I built to pipe `Command`s called pipers.
+      </description>
+      <guid>https://mgattozzi.com/pipers</guid>
+    </item>
+    <item>
+      <title>Schemers - Parsers</title>
+      <link>https://mgattozzi.com/scheme-parser</link>
+      <description>
+        Published December 16th, 2016
+        The third installation of my scheme interpreter course. Let's start building a parser!
+      </description>
+      <guid>https://mgattozzi.com/scheme-parser</guid>
+    </item>
+    <item>
+      <title>Rust is its community</title>
+      <link>https://mgattozzi.com/rust-is</link>
+      <description>
+        Published December 29th, 2016
+        One of many blog posts from Rust's Fireflower incident. Here I describe what Rust's strength
+        truly is, it's community.
+      </description>
+      <guid>https://mgattozzi.com/rust-is</guid>
+    </item>
+    <item>
+      <title>Diesel Powered Rocket</title>
+      <link>https://mgattozzi.com/diesel-powered-rocket</link>
+      <description>
+        Published January 9, 2017
+        How to get Rocket, a Rust webframework working, while using Diesel for interacting with the
+        database.
+      </description>
+      <guid>https://mgattozzi.com/diesel-powered-rocket</guid>
+    </item>
+    <item>
+      <title>Building an Asynchronous Hyper Server</title>
+      <link>https://mgattozzi.com/hyper-async</link>
+      <description>
+        Published January 26th, 2017
+        How to use Hyper to asynchronously serve http requests from version 0.11's pre release
+      </description>
+      <guid>https://mgattozzi.com/hyper-async</guid>
+    </item>
+    <item>
+      <title>Using an Async Hyper Client</title>
+      <link>https://mgattozzi.com/hyper-client</link>
+      <description>
+        Published March 9th, 2017
+        How to use Hyper for http requests asynchronously from version 0.11's pre release
+      </description>
+      <guid>https://mgattozzi.com/hyper-client</guid>
+    </item>
+    <item>
+      <title>Lessons learned redesigning and refactoring a Rust Library</title>
+      <link>https://mgattozzi.com/refactor-rust</link>
+      <description>
+        Published April 27, 2017
+        API design and more are covered here where I discuss bad design and how to fix it.
+      </description>
+      <guid>https://mgattozzi.com/refactor-rust</guid>
+    </item>
+    <item>
+      <title>Two Years of Rust</title>
+      <link>https://mgattozzi.com/2-years-of-rust</link>
+      <description>
+        Published May 14th, 2017
+        A two year retrospective on my usage of Rust.
+      </description>
+      <guid>https://mgattozzi.com/2-years-of-rust</guid>
+    </item>
+    <item>
+      <title>Global Uninitialized Statics in Rust</title>
+      <link>https://mgattozzi.com/global-uninitialized</link>
+      <description>
+        Published May 30th, 2017
+        Rust very much does not like having global mutable variables. Here's how to do just that.
+      </description>
+      <guid>https://mgattozzi.com/global-uninitialized</guid>
+    </item>
+    <item>
+      <title>Avoiding Logic Bugs in Rust with Traits and Types</title>
+      <link>https://mgattozzi.com/avoiding-logic-errors</link>
+      <description>
+        Published July 14th, 2017
+        Rust is really good at making sure the right types go in the right places. It can't stop
+        programmers from implementing the logic correctly without some extra work. We cover how
+        here!
+      </description>
+      <guid>https://mgattozzi.com/avoiding-logic-errors</guid>
+    </item>
+    <item>
+      <title>Rust and the case for WebAssembly in 2018</title>
+      <link>https://mgattozzi.com/rust-wasm</link>
+      <description>
+        Published December 5th, 2017
+        Pushing for Rust to focus it's resources in WebAssembly in 2018. This post kicked off the
+        #Rust2018 call for blog posts to shape the 2018 roadmap.
+      </description>
+      <guid>https://mgattozzi.com/rust-wasm</guid>
+    </item>
+    <item>
+      <title>2017 Retrospective and 2018 Resolutions</title>
+      <link>https://mgattozzi.com/2017-retrospective</link>
+      <description>
+        Published January 1st, 2018
+        A look back at all I accomplished in 2017 and my plans for 2018.
+      </description>
+      <guid>https://mgattozzi.com/2017-retrospective</guid>
+    </item>
+    <item>
+      <title>On Coding with Depression</title>
+      <link>https://mgattozzi.com/depression-coding</link>
+      <description>
+        Published on January 12th, 2018
+        Suffering from mental illness is tough. Here I talk about some of my experiences working in
+        the field while suffering from depression.
+      </description>
+      <guid>https://mgattozzi.com/depression-coding</guid>
+    </item>
+    <item>
+      <title>Words are Power: Writing Authoritative Documentation</title>
+      <link>https://mgattozzi.com/words-are-power</link>
+      <description>
+        Published February 8th, 2018
+        It's easy to write documentation with words that aren't clear cut. Here's some tips to avoid
+        that
+      </description>
+      <guid>https://mgattozzi.com/words-are-power</guid>
+    </item>
+  </channel>
+</rss>

@@ -1,5 +1,4 @@
 # Rust and the case for WebAssembly in 2018
-
 Published December 5th, 2017
 
 Every now and then a technology comes around that fundamentally changes the game

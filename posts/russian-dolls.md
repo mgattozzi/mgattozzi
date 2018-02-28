@@ -1,5 +1,5 @@
 # Russian Dolls and clean Rust code
-<div class="subtitle">Published November 28th, 2016</div>
+Published November 28th, 2016
 
 Recently I started porting my website from [Github pages
 ](https://mgattozzi.github.io) to this domain. I wanted to make my own

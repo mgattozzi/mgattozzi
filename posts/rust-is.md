@@ -1,5 +1,5 @@
 # Rust is its community
-Published Dec 29th, 2016
+Published December 29th, 2016
 
 I've been thinking a lot about what Rust means to me as well as what
 Rust is beyond safety and speed. Recently [Steve Klabnik's article](http://words.steveklabnik.com/rust-is-more-than-safety),
