@@ -31,7 +31,7 @@ use rocket_contrib::Template;
 
 // Std Imports
 use std::path::{ Path, PathBuf };
-use std::io::{ BufReader, Read };
+use std::io::{ BufReader, Read, Error };
 
 // // DB Imports
 // use diesel::prelude::*;
@@ -122,14 +122,14 @@ fn posts(mut posts: PathBuf) -> Option<Template> {
     }
 }
 
-#[get("/keybase.txt")]
-fn keybase() -> Option<NamedFile> {
-    NamedFile::open("keybase.txt").ok()
+#[get("/keybase.txt", rank=1)]
+fn keybase() -> Result<NamedFile, Error> {
+    NamedFile::open("keybase.txt")
 }
 
-#[get("/rss.xml")]
-fn rss() -> Option<NamedFile> {
-    NamedFile::open("rss.xml").ok()
+#[get("/feed", rank=1)]
+fn rss() -> Result<NamedFile, Error> {
+    NamedFile::open("rss.xml")
 }
 
 #[get("/")]
