@@ -1,7 +1,7 @@
 # Making wasm Executable On Linux
 Published March th, 2018
 
-It started with a tweet.
+It started with a tweet:
 
 <a href="https://twitter.com/mgattozzi/status/974765243988574209">
   <img class="center-block img-responsive"
@@ -9,7 +9,7 @@ It started with a tweet.
       alt="What if I made a Linux kernel module to execute wasm directly? 🤔">
 </a>
 
-Which was quickly followed up by some discussion and a possible solution.
+Which was quickly followed up by discussion and a possible solution:
 
 <a href="https://twitter.com/badboy_/status/974767682850574337">
   <img class="center-block img-responsive"
@@ -19,7 +19,7 @@ Which was quickly followed up by some discussion and a possible solution.
       … (referring to your original tweet)">
 </a>
 
-Which led to this tweet:
+Which led to this tweet: # not sure about 
 
 <a href="https://twitter.com/mgattozzi/status/974810805043679233">
   <img class="center-block img-responsive"
@@ -27,41 +27,30 @@ Which led to this tweet:
       alt="Look I'm not saying I just made wasm files executable on linux, but I just made wasm files executable on linux">
 </a>
 
-This post is going to look at how it was accomplished, discuss the necessary code, how you can do it
-on your own system, and look at the current limitations of this solution that outweigh it's benefits
-currently, as well as what we can do to solve these and move wasm forward as an executable file
-format.
+How did it end up like this? Good question! This post will:
+
+- Examine how executable wasm on Linux was accomplished
+- Detail how _you_ can make your own executable wasm
+- Note the current, serious limitations of this solution.
+- How these limitations could be solved.
 
 ## wasm background
 
-You might have heard the buzz around wasm but to me it's a [big
-deal](https://mgattozzi.com/rust-wasm). I've been working with the Rust wasm Working Group in order
-to explore the space and see just what's possible with it. The main thing to understand about wasm
-is that it's a portable binary format designed to let code run at native speeds on the web.
-This byte code is interpreted by the browser and then executed. This is perfect for CPU bound tasks
-on the web and has led to some significant improvements in things like [source map
-parsing](https://hacks.mozilla.org/2018/01/oxidizing-source-maps-with-rust-and-webassembly/)
+You might've heard the buzz [around wasm](https://mgattozzi.com/rust-wasm), but if you haven't, Wasm is a portable binary format at allows code to run at native-level speeds on the Web. I think this is a big deal, which is why I've been working with the Rust wasm Working Group to explore and understand this space. Wasm is perfect for CPU-bound tasks
+and has already led to some significant improvements in things like [source map parsing](https://hacks.mozilla.org/2018/01/oxidizing-source-maps-with-rust-and-webassembly/).
 
-Now I bet some of you're thinking "If this is for the web why are you trying to run it on your
-computer?" Well think of it, we finally have a cross platform open binary format that's not
-controlled by any one corporation. It's an open standard! The Sun Microsystem people were ahead of
-their time with the JVM and Java Web Applets. Now though it's a possibility that's unfettered by
-corporations like Oracle. It's something anyone can implement an interpreter for and run!
+Now, I bet some of you are thinking, "If wasm designed for the web, then why are you trying to run it on yourcomputer?" Mainly: we finally have a cross platform and open binary format that's not
+controlled by any company. The people at Sun Microsystemse were ahead of
+their time with the JVM and Java Web Applets, but the technology is closely linked and influenced by private companies. It's something anyone can implement an interpreter for and run!
 
-I did this because I could, but really the main reason is to get people excited about this
-possibility. Compile once and run anywhere! Oh this library is written in C and this one is written
-in Rust? No problem. Compiling to the same format means it's easier to link and load things. Multi
-language projects? Sweet, less pain with FFI to deal with. No longer will we have to be constrained
-by something like the C ABI! Instead we can just target wasm and define something better together!
+I worked on this project because _I could_, but to also get people excited about wasm's promise and
+possibilities. It allows us to realize the dream of "Compile once and run anywhere"! For instance, incompabilities between libraries written in C and others in in Rust can be resolved by compiling which simplifies linking and loading things. Multi-language projects because to work with as there is less pain with FFI to deal with! No longer will we have to be constrained by something like the C ABI—instead, we can target wasm and define something better together!
 
-Let's cover just how to make wasm executable then we can move on to it's limitations and the future
-where they can be removed.
+<!-- Next, let's cover _exactly how to make wasm executable then we can move on to it's limitations and the futurewhere they can be removed. -->
 
 ## wasm executables
 
-Here's all the code needed to do this. Like most code, it's built on the shoulders of giants and
-uses [Parity Tech's wasm interpreter](https://github.com/paritytech/wasmi) in order to interpret
-the byte code:
+Here's all the code needed to do this:
 
 ```rust
 extern crate wasmi;
@@ -104,16 +93,15 @@ fn main() {
 }
 ```
 
-The way this works is that it calls the `main` function from a Rust executable after instantiating
-the module `start` function with `run_start`. While hidden in most Rust code it's expecting a value
-of `isize` for `argc` and a `*const *const u8` pointer for `argv`. In this case I didn't make any
-assumptions as to what they would be in the interpreter so we just pass in two values of 0 to
-satisfy the program. It will execute the program and get a return value. Normally it would just be
-`0` for rust programs that execute correctly without error. You could run this program on a wasm
-file and it would execute it just fine if it had a `main` function which in the case of my testing
-it did because I was using Rust's `wasm32-unknown-uknown` function. The end result is no fun. So how
-did I get that value of ten in the tweet above? For that we'll need to look at the code used in
-wasm-add:
+(Like most code, it's built on the shoulders of giants and
+uses [Parity Tech's wasm interpreter](https://github.com/paritytech/wasmi) in order to interpret
+the byte code.)
+
+This code works by calling the `main` function from a Rust executable after instantiating
+the module `start` function with `run_start`. While this detail is hidden in most Rust code, this code is  expecting a value of `isize` for `argc` and a `*const *const u8` pointer for `argv`. Here, I didn't make any assumptions as to what they would be in the interpreter, so passing in two values of 0 will
+satisfy the program. Therefore, we'd be able to execute the program and get a return value. For normal Rust programs that execute correctly without errors, our return value would be `0`. 
+
+You can run this program on a wasm file and it would execute it just fine if it had a `main` function which in the case of my testing it did because I was using Rust's `wasm32-unknown-uknown` function. The end result is no fun. So how did I get that value of ten in the tweet above? For that we'll need to look at the code used in wasm-add:
 
 ```rust
 #![feature(start)]
