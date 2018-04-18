@@ -53,6 +53,7 @@ fn main() {
             static_files,
             index,
             rss,
+            rss_rust,
             posts
         ])
         .attach(Template::fairing())
@@ -130,6 +131,11 @@ fn keybase() -> Result<NamedFile, Error> {
 #[get("/feed", rank=1)]
 fn rss() -> Result<NamedFile, Error> {
     NamedFile::open("rss.xml")
+}
+
+#[get("/feed/rust", rank=1)]
+fn rss_rust() -> Result<NamedFile, Error> {
+    NamedFile::open("rss-rust.xml")
 }
 
 #[get("/")]
