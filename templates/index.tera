@@ -12,6 +12,7 @@
   <div>
     Recent Articles
     <ul>
+      <li><a href="/rust-reach-kickoff">Increasing Rust's Reach Kickoff</a></li>
       <li><a href="/words-are-power">Words are Power: Writing Authoritative Documentation</a></li>
       <li><a href="/depression-coding">On Depression and Coding</a></li>
       <li><a href="/2017-retrospective">2017 Retrospective and 2018 Resolutions</a></li>

@@ -276,5 +276,16 @@
       <pubDate>Thu, 8 Feb 2018 08:00:00 EST</pubDate>
       <guid>https://mgattozzi.com/words-are-power</guid>
     </item>
+    <item>
+      <title>Increasing Rust's Reach Kickoff</title>
+      <link>https://mgattozzi.com/rust-reach-kickoff</link>
+      <description>
+        Published May 11th, 2018
+        A post that's part of this Year's Increasing Rust Reach Kickoff and how I got involved with
+        Rust in general
+      </description>
+      <pubDate>Fri, 11 May 2018 21:00:00 EST</pubDate>
+      <guid>https://mgattozzi.com/rust-wasm</guid>
+    </item>
   </channel>
 </rss>
