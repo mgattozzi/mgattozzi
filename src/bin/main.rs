@@ -54,7 +54,9 @@ fn main() {
             index,
             rss,
             rss_rust,
-            posts
+            posts,
+            classes,
+            classes_files
         ])
         .attach(Template::fairing())
         .launch();
@@ -89,7 +91,7 @@ fn static_files(file: PathBuf) -> Option<NamedFile>{
     NamedFile::open(Path::new("static").join(file)).ok()
 }
 
-#[get("/<posts..>", rank=2)]
+#[get("/<posts..>", rank=3)]
 fn posts(mut posts: PathBuf) -> Option<Template> {
     posts.set_extension("md");
     let path = Path::new("posts").join(&posts);
@@ -136,6 +138,18 @@ fn rss() -> Result<NamedFile, Error> {
 #[get("/feed/rust", rank=1)]
 fn rss_rust() -> Result<NamedFile, Error> {
     NamedFile::open("rss-rust.xml")
+}
+
+// Hard coding the one class I'm doing for now
+#[get("/classes/<file..>", rank=2)]
+fn classes_files(file: PathBuf) -> Option<NamedFile>{
+    NamedFile::open(Path::new("async-await").join(file)).ok()
+}
+
+// Hard coding the one class I'm doing for now
+#[get("/classes/run-await-with-me", rank=1)]
+fn classes() -> Result<NamedFile, Error> {
+    NamedFile::open("async-await/index.html")
 }
 
 #[get("/")]
