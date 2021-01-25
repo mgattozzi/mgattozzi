@@ -13,8 +13,7 @@ I just want you to see my good boy. I mean do you see how cute he is?
 href="https://t.co/17du4f581Y">pic.twitter.com/17du4f581Y</a></p>&mdash;
 10xEngiNier: Automata (@mgattozzi) <a
 href="https://twitter.com/mgattozzi/status/1352409445310062593?ref_src=twsrc%5Etfw">January
-22, 2021</a></blockquote> <script async
-src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+22, 2021</a></blockquote>
 
 ✍🏻 Blog Posts
 You can find my blog [here](https://blog.mgattozzi.dev) but I have a few posts
