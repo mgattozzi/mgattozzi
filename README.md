@@ -31,7 +31,11 @@ that I think are worth your time:
   their versions are *chosen* and this post dives into the theory in an
   accessible way because CS doesn't need to be hard.
 
-
+📰 The Monthly Oxide
+I have a monthly newsletter you might like where I write a medium form post (too long for twitter,
+too short for the blog) about something in Rust, for example my [first post was on traits](https://mgattozzi.substack.com/p/the-monthly-oxide-1),
+as well as links for interesting projects and posts I found in the past month. If that's your jam
+[consider subscribing](https://mgattozzi.substack.com/)!
 
 📱 Contact
 - Send me a Twitter DM, they're open
@@ -43,7 +47,3 @@ You can follow me on these accounts:
 
 That's pretty much it. Also here on GitHub, but I deleted most of my social media and my
 LinkedIn as they provided no benefit to me.
-
-☭ Sponsor Me to Build Glorious VCS Future for Developers
-
-- [GitHub Sponsors](https://github.com/sponsors/mgattozzi)
