@@ -1,6 +1,6 @@
-👋 Who am I?
 
-I'm Michael and I work on making the Internet Tubes faster
+
+
 
 ✍🏻 Blog
 
