@@ -1,17 +1,17 @@
-## About Me
+Hi I’m Michael! I’m an industry veteran currently working on [InfluxDB Edge](https://github.com/influxdata/influxdb),
+InfluxData’s new open source time series database. Prior to InfluxData I’ve worked at companies like
+[Fastly](https://www.fastly.com/), where I built out their Compute@Edge platform for running code all
+around the world close to your users and Commure, where I worked on building out systems to enable better
+interoperability among healthcare systems and hospitals. While I’ve mainly specialized in networking,
+back end systems, and Rust over the past 8+ years I’m always driven to learn more and expand my breadth of knowledge.
 
-I am an experienced Software Developer with a proven track record of 8 years in the industry. Throughout my career, I have primarily focused on leveraging my expertise in Rust, but I am equally enthusiastic about other languages such as Go, Python, Java and JavaScript to name a few. My passion lies in delivering exceptional experiences to end-users through my work. Outside of the professional sphere, I find great joy in nature, often indulging in activities like hiking, gardening, and nurturing my bonsai collection, which provide a refreshing balance to my life and work.
+## Talks
+- [RustConf 2022 - Weird Expressions and Where to Find Them](https://www.youtube.com/watch?v=tNVDjMxCz-c)
+- [Rust LATAM 2019 - Defense Against the Wrong Logic: Proactive Rust Coding](https://www.youtube.com/watch?v=jT6YEiE6O6E)
+- [RustConf 2017 - Shipping a Solid Rust Crate](https://www.youtube.com/watch?v=t4CyEKb-ywA)
 
-You can get a copy of my current resume [here](https://drive.google.com/file/d/1yKqWCGK1bI8A3bHvf0BoqyTclr9xmPVs/view?usp=drivesdk).
-
-I'm currently available now for full time employment or contracting work.
-
-I'm also always open to chat! You can [grab time time on my calendar here](https://calendly.com/mgattozzi/30min).
-
-## Contact and Websites
-
-- Github: [mgattozzi](https://github.com/mgattozzi)
-- LinkedIn: [mgattozzi](https://www.linkedin.com/in/mgattozzi/)
+## Contact and Socials
+- LinkedIn: [mgattozzi](https://www.linkedin.com/in/mgattozzi)
 - Twitter: [mgattozzi](https://twitter.com/mgattozzi)
 - Mastodon: [@mgattozzi@hachyderm.io](https://hachyderm.io/@mgattozzi)
 - Email: [michael@ductile.systems](mailto:michael@ductile.systems)
